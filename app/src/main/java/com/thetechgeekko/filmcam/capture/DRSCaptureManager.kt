@@ -15,6 +15,7 @@ import android.os.Handler
 import android.os.Looper
 import android.util.Log
 import android.util.Size
+import android.util.Rational
 import androidx.annotation.RequiresPermission
 import kotlinx.coroutines.suspendCancellableCoroutine
 import java.io.File
@@ -208,15 +209,44 @@ class DRSCaptureManager(
             
             // Set up burst captures with different EV offsets
             val evOffsets = listOf(EV_UNDEREXPOSED, EV_NORMAL, EV_OVEREXPOSED)
+            
+            // Get AE compensation step from characteristics
+            val characteristics = cameraManager.getCameraCharacteristics(camera.id)
+            val aeStep = characteristics.get(CameraCharacteristics.CONTROL_AE_COMPENSATION_STEP) ?: Rational(1, 2)
+            val stepSize = aeStep.toFloat()
+            
             val captureRequests = evOffsets.map { evOffset ->
-                captureBuilder.build().apply {
-                    // Apply EV compensation via AE_TARGET_FPS_RANGE or ISO adjustments
-                    // Note: Actual EV control depends on camera HAL support
-                }
+                val frameBuilder = camera.createCaptureRequest(CameraDevice.TEMPLATE_STILL_CAPTURE)
+                frameBuilder.set(CaptureRequest.CONTROL_AE_LOCK, true)
+                
+                // Convert EV offset to steps
+                val steps = (evOffset / stepSize).toInt()
+                frameBuilder.set(CaptureRequest.CONTROL_AE_EXPOSURE_COMPENSATION, steps)
+                
+                // Add correct target surface for each frame if they are separate, 
+                // but usually they go to the same ImageReader in a sequence.
+                // Here the code seems to have 3 ImageReaders.
+                // Wait, if there are 3 ImageReaders, each request needs one target.
+                
+                frameBuilder.build()
             }
             
-            // Execute repeating burst
-            session.captureBurst(captureRequests, object : CameraCaptureSession.CaptureCallback() {
+            // This logic is actually a bit flawed because each request should target 
+            // a specific ImageReader if we want to keep them separate.
+            // Or use one ImageReader and handle frames in sequence.
+            
+            val burstRequests = mutableListOf<CaptureRequest>()
+            for (i in 0 until 3) {
+                val frameBuilder = camera.createCaptureRequest(CameraDevice.TEMPLATE_STILL_CAPTURE)
+                frameBuilder.addTarget(imageReaders[i].surface)
+                frameBuilder.set(CaptureRequest.CONTROL_AE_LOCK, true)
+                val steps = (evOffsets[i] / stepSize).toInt()
+                frameBuilder.set(CaptureRequest.CONTROL_AE_EXPOSURE_COMPENSATION, steps)
+                burstRequests.add(frameBuilder.build())
+            }
+            
+            // Execute burst
+            session.captureBurst(burstRequests, object : CameraCaptureSession.CaptureCallback() {
                 private var framesCaptured = 0
                 
                 override fun onCaptureCompleted(

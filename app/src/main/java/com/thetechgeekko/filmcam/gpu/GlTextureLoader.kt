@@ -4,6 +4,7 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.opengl.GLES11Ext
 import android.opengl.GLES20
+import android.opengl.GLES30
 import android.opengl.GLUtils
 import android.util.LruCache
 import kotlinx.coroutines.Dispatchers
@@ -61,7 +62,7 @@ class GlTextureLoader {
             EGL10.EGL_GREEN_SIZE, 8,
             EGL10.EGL_BLUE_SIZE, 8,
             EGL10.EGL_ALPHA_SIZE, 8,
-            EGL10.EGL_RENDERABLE_TYPE, 0x0004, // EGL_OPENGL_ES2_BIT
+            EGL10.EGL_RENDERABLE_TYPE, 0x0040, // EGL_OPENGL_ES3_BIT_KHR
             EGL10.EGL_NONE
         )
         
@@ -74,7 +75,7 @@ class GlTextureLoader {
         val config = configs.firstOrNull() ?: throw RuntimeException("No suitable EGL config found")
         
         eglContext = egl10.eglCreateContext(eglDisplay, config, EGL10.EGL_NO_CONTEXT, 
-            intArrayOf(EGL10.EGL_CONTEXT_CLIENT_VERSION, 2, EGL10.EGL_NONE))
+            intArrayOf(EGL10.EGL_CONTEXT_CLIENT_VERSION, 3, EGL10.EGL_NONE))
         
         // Create dummy pbuffer surface for off-screen rendering
         val surfaceAttribs = intArrayOf(EGL10.EGL_NONE)
@@ -182,57 +183,57 @@ class GlTextureLoader {
      */
     fun createFbo(width: Int, height: Int, useFloat32: Boolean = true): Int {
         val fbo = intArrayOf(0)
-        GLES20.glGenFramebuffers(1, fbo, 0)
-        GLES20.glBindFramebuffer(GLES20.GL_FRAMEBUFFER, fbo[0])
+        GLES30.glGenFramebuffers(1, fbo, 0)
+        GLES30.glBindFramebuffer(GLES30.GL_FRAMEBUFFER, fbo[0])
         
         // Create color attachment texture
         val texture = intArrayOf(0)
-        GLES20.glGenTextures(1, texture, 0)
-        GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, texture[0])
+        GLES30.glGenTextures(1, texture, 0)
+        GLES30.glBindTexture(GLES30.GL_TEXTURE_2D, texture[0])
         
         if (useFloat32) {
             // Use RGB32F for linear HDR processing
-            GLES20.glTexImage2D(
-                GLES20.GL_TEXTURE_2D, 0,
-                GLES20.GL_RGB32F,
+            GLES30.glTexImage2D(
+                GLES30.GL_TEXTURE_2D, 0,
+                GLES30.GL_RGB32F,
                 width, height, 0,
-                GLES20.GL_RGB,
-                GLES20.GL_FLOAT,
+                GLES30.GL_RGB,
+                GLES30.GL_FLOAT,
                 null
             )
         } else {
-            GLES20.glTexImage2D(
-                GLES20.GL_TEXTURE_2D, 0,
-                GLES20.GL_RGBA,
+            GLES30.glTexImage2D(
+                GLES30.GL_TEXTURE_2D, 0,
+                GLES30.GL_RGBA,
                 width, height, 0,
-                GLES20.GL_RGBA,
-                GLES20.GL_UNSIGNED_BYTE,
+                GLES30.GL_RGBA,
+                GLES30.GL_UNSIGNED_BYTE,
                 null
             )
         }
         
-        GLES20.glTexParameteri(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_MIN_FILTER, GLES20.GL_LINEAR)
-        GLES20.glTexParameteri(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_MAG_FILTER, GLES20.GL_LINEAR)
-        GLES20.glTexParameteri(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_WRAP_S, GLES20.GL_CLAMP_TO_EDGE)
-        GLES20.glTexParameteri(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_WRAP_T, GLES20.GL_CLAMP_TO_EDGE)
+        GLES30.glTexParameteri(GLES30.GL_TEXTURE_2D, GLES30.GL_TEXTURE_MIN_FILTER, GLES30.GL_LINEAR)
+        GLES30.glTexParameteri(GLES30.GL_TEXTURE_2D, GLES30.GL_TEXTURE_MAG_FILTER, GLES30.GL_LINEAR)
+        GLES30.glTexParameteri(GLES30.GL_TEXTURE_2D, GLES30.GL_TEXTURE_WRAP_S, GLES30.GL_CLAMP_TO_EDGE)
+        GLES30.glTexParameteri(GLES30.GL_TEXTURE_2D, GLES30.GL_TEXTURE_WRAP_T, GLES30.GL_CLAMP_TO_EDGE)
         
         // Attach to FBO
-        GLES20.glFramebufferTexture2D(
-            GLES20.GL_FRAMEBUFFER,
-            GLES20.GL_COLOR_ATTACHMENT0,
-            GLES20.GL_TEXTURE_2D,
+        GLES30.glFramebufferTexture2D(
+            GLES30.GL_FRAMEBUFFER,
+            GLES30.GL_COLOR_ATTACHMENT0,
+            GLES30.GL_TEXTURE_2D,
             texture[0],
             0
         )
         
         // Check FBO completeness
-        val status = GLES20.glCheckFramebufferStatus(GLES20.GL_FRAMEBUFFER)
-        if (status != GLES20.GL_FRAMEBUFFER_COMPLETE) {
+        val status = GLES30.glCheckFramebufferStatus(GLES30.GL_FRAMEBUFFER)
+        if (status != GLES30.GL_FRAMEBUFFER_COMPLETE) {
             throw RuntimeException("FBO incomplete: $status")
         }
         
-        GLES20.glBindFramebuffer(GLES20.GL_FRAMEBUFFER, 0)
-        fbo[0]
+        GLES30.glBindFramebuffer(GLES30.GL_FRAMEBUFFER, 0)
+        return fbo[0]
     }
     
     /**
@@ -268,18 +269,18 @@ class GlTextureLoader {
         if (fboId > 0) {
             // Get attached texture ID
             val params = intArrayOf(0)
-            GLES20.glGetFramebufferAttachmentParameteriv(
-                GLES20.GL_FRAMEBUFFER,
-                GLES20.GL_COLOR_ATTACHMENT0,
-                GLES20.GL_FRAMEBUFFER_ATTACHMENT_OBJECT_NAME,
+            GLES30.glGetFramebufferAttachmentParameteriv(
+                GLES30.GL_FRAMEBUFFER,
+                GLES30.GL_COLOR_ATTACHMENT0,
+                GLES30.GL_FRAMEBUFFER_ATTACHMENT_OBJECT_NAME,
                 params,
                 0
             )
             val textureId = params[0]
             if (textureId > 0) {
-                GLES20.glDeleteTextures(1, intArrayOf(textureId), 0)
+                GLES30.glDeleteTextures(1, intArrayOf(textureId), 0)
             }
-            GLES20.glDeleteFramebuffers(1, intArrayOf(fboId), 0)
+            GLES30.glDeleteFramebuffers(1, intArrayOf(fboId), 0)
         }
     }
     

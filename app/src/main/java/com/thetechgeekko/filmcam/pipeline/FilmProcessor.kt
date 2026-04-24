@@ -5,6 +5,8 @@ import android.graphics.Bitmap
 import android.graphics.ImageFormat
 import android.media.Image
 import android.opengl.GLES20
+import android.opengl.GLES30
+import android.opengl.GLUtils
 import android.util.Log
 import com.filmcam.gpu.GlTextureLoader
 import com.filmcam.model.FilmSettings
@@ -87,48 +89,48 @@ class FilmProcessor(
      * Create OpenGL shader program from film_pipeline.frag
      */
     private fun createShaderProgram() {
-        val vertexShader = loadShader(GLES20.GL_VERTEX_SHADER, VERTEX_SHADER)
+        val vertexShader = loadShader(GLES30.GL_VERTEX_SHADER, VERTEX_SHADER)
         val fragmentShader = loadShader(
-            GLES20.GL_FRAGMENT_SHADER,
+            GLES30.GL_FRAGMENT_SHADER,
             context.assets.open("shaders/filmcam/film_pipeline.frag").bufferedReader().use { it.readText() }
         )
         
-        programId = GLES20.glCreateProgram()
-        GLES20.glAttachShader(programId, vertexShader)
-        GLES20.glAttachShader(programId, fragmentShader)
-        GLES20.glLinkProgram(programId)
+        programId = GLES30.glCreateProgram()
+        GLES30.glAttachShader(programId, vertexShader)
+        GLES30.glAttachShader(programId, fragmentShader)
+        GLES30.glLinkProgram(programId)
         
         val linkStatus = intArrayOf(0)
-        GLES20.glGetProgramiv(programId, GLES20.GL_LINK_STATUS, linkStatus, 0)
-        if (linkStatus[0] != GLES20.GL_TRUE) {
-            val errorLog = GLES20.glGetProgramInfoLog(programId)
+        GLES30.glGetProgramiv(programId, GLES30.GL_LINK_STATUS, linkStatus, 0)
+        if (linkStatus[0] != GLES30.GL_TRUE) {
+            val errorLog = GLES30.glGetProgramInfoLog(programId)
             throw RuntimeException("Failed to link shader program: $errorLog")
         }
         
         // Get all uniform locations
-        uInputImageLoc = GLES20.glGetUniformLocation(programId, "uInputImage")
-        uHaldClutLoc = GLES20.glGetUniformLocation(programId, "uHaldClut")
-        uGrainTextureLoc = GLES20.glGetUniformLocation(programId, "uGrainTexture")
-        uSkinClutLoc = GLES20.glGetUniformLocation(programId, "uSkinClut")
-        uClutLevelLoc = GLES20.glGetUniformLocation(programId, "uClutLevel")
-        uEmulationStrengthLoc = GLES20.glGetUniformLocation(programId, "uEmulationStrength")
-        uSaturationLoc = GLES20.glGetUniformLocation(programId, "uSaturation")
-        uContrastLoc = GLES20.glGetUniformLocation(programId, "uContrast")
-        uTemperatureLoc = GLES20.glGetUniformLocation(programId, "uTemperature")
-        uTintLoc = GLES20.glGetUniformLocation(programId, "uTint")
-        uFadeLoc = GLES20.glGetUniformLocation(programId, "uFade")
-        uMuteLoc = GLES20.glGetUniformLocation(programId, "uMute")
-        uGrainLevelLoc = GLES20.glGetUniformLocation(programId, "uGrainLevel")
-        uGrainSizeLoc = GLES20.glGetUniformLocation(programId, "uGrainSize")
-        uHalationLoc = GLES20.glGetUniformLocation(programId, "uHalation")
-        uBloomLoc = GLES20.glGetUniformLocation(programId, "uBloom")
-        uAberrationLoc = GLES20.glGetUniformLocation(programId, "uAberration")
-        uToneCurveLoc = GLES20.glGetUniformLocation(programId, "uToneCurve")
-        uExposureCompLoc = GLES20.glGetUniformLocation(programId, "uExposureComp")
-        uIsoFactorLoc = GLES20.glGetUniformLocation(programId, "uIsoFactor")
-        uDynamicRangeLoc = GLES20.glGetUniformLocation(programId, "uDynamicRange")
-        uApplySkinTonesLoc = GLES20.glGetUniformLocation(programId, "uApplySkinTones")
-        uSkinMaskThresholdLoc = GLES20.glGetUniformLocation(programId, "uSkinMaskThreshold")
+        uInputImageLoc = GLES30.glGetUniformLocation(programId, "uInputImage")
+        uHaldClutLoc = GLES30.glGetUniformLocation(programId, "uHaldClut")
+        uGrainTextureLoc = GLES30.glGetUniformLocation(programId, "uGrainTexture")
+        uSkinClutLoc = GLES30.glGetUniformLocation(programId, "uSkinClut")
+        uClutLevelLoc = GLES30.glGetUniformLocation(programId, "uClutLevel")
+        uEmulationStrengthLoc = GLES30.glGetUniformLocation(programId, "uEmulationStrength")
+        uSaturationLoc = GLES30.glGetUniformLocation(programId, "uSaturation")
+        uContrastLoc = GLES30.glGetUniformLocation(programId, "uContrast")
+        uTemperatureLoc = GLES30.glGetUniformLocation(programId, "uTemperature")
+        uTintLoc = GLES30.glGetUniformLocation(programId, "uTint")
+        uFadeLoc = GLES30.glGetUniformLocation(programId, "uFade")
+        uMuteLoc = GLES30.glGetUniformLocation(programId, "uMute")
+        uGrainLevelLoc = GLES30.glGetUniformLocation(programId, "uGrainLevel")
+        uGrainSizeLoc = GLES30.glGetUniformLocation(programId, "uGrainSize")
+        uHalationLoc = GLES30.glGetUniformLocation(programId, "uHalation")
+        uBloomLoc = GLES30.glGetUniformLocation(programId, "uBloom")
+        uAberrationLoc = GLES30.glGetUniformLocation(programId, "uAberration")
+        uToneCurveLoc = GLES30.glGetUniformLocation(programId, "uToneCurve")
+        uExposureCompLoc = GLES30.glGetUniformLocation(programId, "uExposureComp")
+        uIsoFactorLoc = GLES30.glGetUniformLocation(programId, "uIsoFactor")
+        uDynamicRangeLoc = GLES30.glGetUniformLocation(programId, "uDynamicRange")
+        uApplySkinTonesLoc = GLES30.glGetUniformLocation(programId, "uApplySkinTones")
+        uSkinMaskThresholdLoc = GLES30.glGetUniformLocation(programId, "uSkinMaskThreshold")
     }
     
     /**
@@ -151,23 +153,23 @@ class FilmProcessor(
         
         // Create VAO
         val vao = intArrayOf(0)
-        GLES20.glGenVertexArrays(1, vao, 0)
+        GLES30.glGenVertexArrays(1, vao, 0)
         vaoId = vao[0]
-        GLES20.glBindVertexArray(vaoId)
+        GLES30.glBindVertexArray(vaoId)
         
         // Create VBO
         val vbo = intArrayOf(0)
-        GLES20.glGenBuffers(1, vbo, 0)
+        GLES30.glGenBuffers(1, vbo, 0)
         vboId = vbo[0]
-        GLES20.glBindBuffer(GLES20.GL_ARRAY_BUFFER, vboId)
-        GLES20.glBufferData(GLES20.GL_ARRAY_BUFFER, vertices.size * 4, vertexBuffer, GLES20.GL_STATIC_DRAW)
+        GLES30.glBindBuffer(GLES30.GL_ARRAY_BUFFER, vboId)
+        GLES30.glBufferData(GLES30.GL_ARRAY_BUFFER, vertices.size * 4, vertexBuffer, GLES30.GL_STATIC_DRAW)
         
         // Position attribute (location 0)
         positionHandle = 0
-        GLES20.glVertexAttribPointer(positionHandle, 4, GLES20.GL_FLOAT, false, 16, 0)
-        GLES20.glEnableVertexAttribArray(positionHandle)
+        GLES30.glVertexAttribPointer(positionHandle, 4, GLES30.GL_FLOAT, false, 16, 0)
+        GLES30.glEnableVertexAttribArray(positionHandle)
         
-        GLES20.glBindVertexArray(0)
+        GLES30.glBindVertexArray(0)
     }
     
     /**
@@ -251,61 +253,61 @@ class FilmProcessor(
         settings: FilmSettings,
         fboId: Int
     ) {
-        GLES20.glUseProgram(programId)
-        GLES20.glBindFramebuffer(GLES20.GL_FRAMEBUFFER, fboId)
-        GLES20.glViewport(0, 0, width, height)
+        GLES30.glUseProgram(programId)
+        GLES30.glBindFramebuffer(GLES30.GL_FRAMEBUFFER, fboId)
+        GLES30.glViewport(0, 0, width, height)
         
         // Bind textures to texture units
-        GLES20.glActiveTexture(GLES20.GL_TEXTURE0)
-        GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, inputTextureId)
-        GLES20.glUniform1i(uInputImageLoc, 0)
+        GLES30.glActiveTexture(GLES30.GL_TEXTURE0)
+        GLES30.glBindTexture(GLES30.GL_TEXTURE_2D, inputTextureId)
+        GLES30.glUniform1i(uInputImageLoc, 0)
         
-        GLES20.glActiveTexture(GLES20.GL_TEXTURE1)
-        GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, clutTextureId)
-        GLES20.glUniform1i(uHaldClutLoc, 1)
+        GLES30.glActiveTexture(GLES30.GL_TEXTURE1)
+        GLES30.glBindTexture(GLES30.GL_TEXTURE_2D, clutTextureId)
+        GLES30.glUniform1i(uHaldClutLoc, 1)
         
-        GLES20.glActiveTexture(GLES20.GL_TEXTURE2)
-        GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, grainTextureId)
-        GLES20.glUniform1i(uGrainTextureLoc, 2)
+        GLES30.glActiveTexture(GLES30.GL_TEXTURE2)
+        GLES30.glBindTexture(GLES30.GL_TEXTURE_2D, grainTextureId)
+        GLES30.glUniform1i(uGrainTextureLoc, 2)
         
         // Set uniforms
-        GLES20.glUniform1f(uClutLevelLoc, FilmSettings.getClutLevel(512)) // Will be dynamic based on actual CLUT
+        GLES30.glUniform1f(uClutLevelLoc, FilmSettings.getClutLevel(512)) // Will be dynamic based on actual CLUT
         
-        GLES20.glUniform1f(uEmulationStrengthLoc, settings.emulationStrength)
-        GLES20.glUniform1f(uSaturationLoc, settings.saturation)
-        GLES20.glUniform1f(uContrastLoc, settings.contrast)
-        GLES20.glUniform1f(uTemperatureLoc, settings.temperature)
-        GLES20.glUniform1f(uTintLoc, settings.tint)
-        GLES20.glUniform1f(uFadeLoc, settings.fade)
-        GLES20.glUniform1f(uMuteLoc, settings.mute)
+        GLES30.glUniform1f(uEmulationStrengthLoc, settings.emulationStrength)
+        GLES30.glUniform1f(uSaturationLoc, settings.saturation)
+        GLES30.glUniform1f(uContrastLoc, settings.contrast)
+        GLES30.glUniform1f(uTemperatureLoc, settings.temperature)
+        GLES30.glUniform1f(uTintLoc, settings.tint)
+        GLES30.glUniform1f(uFadeLoc, settings.fade)
+        GLES30.glUniform1f(uMuteLoc, settings.mute)
         
-        GLES20.glUniform1f(uGrainLevelLoc, settings.grainLevel)
-        GLES20.glUniform1f(uGrainSizeLoc, settings.grainSize)
-        GLES20.glUniform1f(uHalationLoc, settings.halation)
-        GLES20.glUniform1f(uBloomLoc, settings.bloom)
-        GLES20.glUniform1f(uAberrationLoc, settings.aberration)
+        GLES30.glUniform1f(uGrainLevelLoc, settings.grainLevel)
+        GLES30.glUniform1f(uGrainSizeLoc, settings.grainSize)
+        GLES30.glUniform1f(uHalationLoc, settings.halation)
+        GLES30.glUniform1f(uBloomLoc, settings.bloom)
+        GLES30.glUniform1f(uAberrationLoc, settings.aberration)
         
-        GLES20.glUniform3f(
+        GLES30.glUniform3f(
             uToneCurveLoc,
             settings.toneCurve.highlights,
             settings.toneCurve.midtones,
             settings.toneCurve.shadows
         )
         
-        GLES20.glUniform1f(uExposureCompLoc, settings.exposureComp)
-        GLES20.glUniform1f(uIsoFactorLoc, FilmSettings.calculateIsoFactor(settings.isoSim))
-        GLES20.glUniform1i(uDynamicRangeLoc, settings.dynamicRange.ordinal)
+        GLES30.glUniform1f(uExposureCompLoc, settings.exposureComp)
+        GLES30.glUniform1f(uIsoFactorLoc, FilmSettings.calculateIsoFactor(settings.isoSim))
+        GLES30.glUniform1i(uDynamicRangeLoc, settings.dynamicRange.ordinal)
         
-        GLES20.glUniform1i(uApplySkinTonesLoc, if (settings.emulation.id == "skinTones") 1 else 0)
-        GLES20.glUniform1f(uSkinMaskThresholdLoc, 0.3f) // Skin luminance threshold
+        GLES30.glUniform1i(uApplySkinTonesLoc, if (settings.emulation.id == "skinTones") 1 else 0)
+        GLES30.glUniform1f(uSkinMaskThresholdLoc, 0.3f) // Skin luminance threshold
         
         // Draw fullscreen quad
-        GLES20.glBindVertexArray(vaoId)
-        GLES20.glDrawArrays(GLES20.GL_TRIANGLE_STRIP, 0, 4)
-        GLES20.glBindVertexArray(0)
+        GLES30.glBindVertexArray(vaoId)
+        GLES30.glDrawArrays(GLES30.GL_TRIANGLE_STRIP, 0, 4)
+        GLES30.glBindVertexArray(0)
         
-        GLES20.glBindFramebuffer(GLES20.GL_FRAMEBUFFER, 0)
-        GLES20.glUseProgram(0)
+        GLES30.glBindFramebuffer(GLES30.GL_FRAMEBUFFER, 0)
+        GLES30.glUseProgram(0)
     }
     
     /**
@@ -338,17 +340,17 @@ class FilmProcessor(
      */
     private fun loadBitmapAsTexture(bitmap: Bitmap): Int {
         val textureId = intArrayOf(0)
-        GLES20.glGenTextures(1, textureId, 0)
+        GLES30.glGenTextures(1, textureId, 0)
         
-        GLES20.glActiveTexture(GLES20.GL_TEXTURE0)
-        GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, textureId[0])
+        GLES30.glActiveTexture(GLES30.GL_TEXTURE0)
+        GLES30.glBindTexture(GLES30.GL_TEXTURE_2D, textureId[0])
         
-        GLES20.glTexParameteri(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_MIN_FILTER, GLES20.GL_LINEAR)
-        GLES20.glTexParameteri(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_MAG_FILTER, GLES20.GL_LINEAR)
-        GLES20.glTexParameteri(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_WRAP_S, GLES20.GL_CLAMP_TO_EDGE)
-        GLES20.glTexParameteri(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_WRAP_T, GLES20.GL_CLAMP_TO_EDGE)
+        GLES30.glTexParameteri(GLES30.GL_TEXTURE_2D, GLES30.GL_TEXTURE_MIN_FILTER, GLES30.GL_LINEAR)
+        GLES30.glTexParameteri(GLES30.GL_TEXTURE_2D, GLES30.GL_TEXTURE_MAG_FILTER, GLES30.GL_LINEAR)
+        GLES30.glTexParameteri(GLES30.GL_TEXTURE_2D, GLES30.GL_TEXTURE_WRAP_S, GLES30.GL_CLAMP_TO_EDGE)
+        GLES30.glTexParameteri(GLES30.GL_TEXTURE_2D, GLES30.GL_TEXTURE_WRAP_T, GLES30.GL_CLAMP_TO_EDGE)
         
-        GLUtils.texImage2D(GLES20.GL_TEXTURE_2D, 0, bitmap, 0)
+        GLUtils.texImage2D(GLES30.GL_TEXTURE_2D, 0, bitmap, 0)
         
         return textureId[0]
     }
@@ -357,10 +359,10 @@ class FilmProcessor(
      * Read framebuffer pixels to Bitmap
      */
     private fun readFramebufferToBitmap(width: Int, height: Int, fboId: Int): Bitmap {
-        GLES20.glBindFramebuffer(GLES20.GL_FRAMEBUFFER, fboId)
+        GLES30.glBindFramebuffer(GLES30.GL_FRAMEBUFFER, fboId)
         
         val pixelBuffer = ByteBuffer.allocate(width * height * 4)
-        GLES20.glReadPixels(0, 0, width, height, GLES20.GL_RGBA, GLES20.GL_UNSIGNED_BYTE, pixelBuffer)
+        GLES30.glReadPixels(0, 0, width, height, GLES30.GL_RGBA, GLES30.GL_UNSIGNED_BYTE, pixelBuffer)
         
         val bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
         pixelBuffer.rewind()
@@ -372,7 +374,7 @@ class FilmProcessor(
         canvas.drawBitmap(bitmap, 0f, 0f, null)
         bitmap.recycle()
         
-        GLES20.glBindFramebuffer(GLES20.GL_FRAMEBUFFER, 0)
+        GLES30.glBindFramebuffer(GLES30.GL_FRAMEBUFFER, 0)
         
         return flippedBitmap
     }
@@ -390,15 +392,15 @@ class FilmProcessor(
      * Load shader from source string
      */
     private fun loadShader(type: Int, source: String): Int {
-        val shaderId = GLES20.glCreateShader(type)
-        GLES20.glShaderSource(shaderId, source)
-        GLES20.glCompileShader(shaderId)
+        val shaderId = GLES30.glCreateShader(type)
+        GLES30.glShaderSource(shaderId, source)
+        GLES30.glCompileShader(shaderId)
         
         val compileStatus = intArrayOf(0)
-        GLES20.glGetShaderiv(shaderId, GLES20.GL_COMPILE_STATUS, compileStatus, 0)
-        if (compileStatus[0] != GLES20.GL_TRUE) {
-            val errorLog = GLES20.glGetShaderInfoLog(shaderId)
-            GLES20.glDeleteShader(shaderId)
+        GLES30.glGetShaderiv(shaderId, GLES30.GL_COMPILE_STATUS, compileStatus, 0)
+        if (compileStatus[0] != GLES30.GL_TRUE) {
+            val errorLog = GLES30.glGetShaderInfoLog(shaderId)
+            GLES30.glDeleteShader(shaderId)
             throw RuntimeException("Failed to compile shader: $errorLog")
         }
         
@@ -410,15 +412,15 @@ class FilmProcessor(
      */
     fun release() {
         if (programId > 0) {
-            GLES20.glDeleteProgram(programId)
+            GLES30.glDeleteProgram(programId)
             programId = 0
         }
         if (vaoId > 0) {
-            GLES20.glDeleteVertexArrays(1, intArrayOf(vaoId), 0)
+            GLES30.glDeleteVertexArrays(1, intArrayOf(vaoId), 0)
             vaoId = 0
         }
         if (vboId > 0) {
-            GLES20.glDeleteBuffers(1, intArrayOf(vboId), 0)
+            GLES30.glDeleteBuffers(1, intArrayOf(vboId), 0)
             vboId = 0
         }
         textureLoader.release()

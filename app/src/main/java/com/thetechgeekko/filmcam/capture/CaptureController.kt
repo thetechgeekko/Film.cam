@@ -313,7 +313,7 @@ class CaptureController(
             AspectRatio.FOUR_THREE -> 4.0f / 3.0f
             AspectRatio.THREE_TWO -> 3.0f / 2.0f
             AspectRatio.SIXTEEN_NINE -> 16.0f / 9.0f
-            AspectRatio.TWO_THIRTY_FIVE_SCOPE -> 2.35f
+            AspectRatio.SCOPE -> 2.35f
         }
         
         val sensorRatio = sensorWidth.toFloat() / sensorHeight.toFloat()
