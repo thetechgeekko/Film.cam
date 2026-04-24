@@ -1,40 +1,68 @@
 ```
-# Build and intermediate files
+# Compiled and build artifacts
 *.class
-*.dex
-*.oat
-*.odex
+*.o
+*.obj
+*.out
+*.dll
 *.so
-*.aar
-*.apk
-*.ap_
-*.apks
-*.aab
+*.a
 
-# Android build outputs
-build/
+# Dependencies
+node_modules/
+venv/
+.venv/
+__pycache__/
+.mypy_cache/
+.pytest_cache/
+target/
 .gradle/
-captures/
-*.keystore
-*.jks
 
-# Android studio
-.idea/
-*.iml
-*.iws
-*.hprof
-local.properties
-
-# Gradle
-.gradle/
-!gradle/wrapper/
-
-# Temporary files
-*.tmp
-*.temp
+# Logs and temp files
 *.log
+*.tmp
+*.swp
+*.swo
 
-# OS generated files
+# Environment
+.env
+.env.local
+*.env.*
+
+# Editors
+.vscode/
+.idea/
+
+# System files
 .DS_Store
 Thumbs.db
+
+# Coverage
+coverage/
+htmlcov/
+.coverage
+
+# Compressed files
+*.zip
+*.gz
+*.tar
+*.tgz
+*.bz2
+*.xz
+*.7z
+*.rar
+*.zst
+*.lz4
+*.lzh
+*.cab
+*.arj
+*.rpm
+*.deb
+*.Z
+*.lz
+*.lzo
+*.tar.gz
+*.tar.bz2
+*.tar.xz
+*.tar.zst
 ```
