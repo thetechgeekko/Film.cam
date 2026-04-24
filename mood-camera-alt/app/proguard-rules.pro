@@ -56,3 +56,47 @@
 
 # Missing class rules
 -dontwarn org.apache.commons.lang.functor.Predicate
+
+# ===== Film.cam Rules =====
+# Keep Film.cam GPU pipeline classes
+-keep class com.filmcam.gpu.** { *; }
+-keep class com.filmcam.pipeline.** { *; }
+-keep class com.filmcam.capture.** { *; }
+-keep class com.filmcam.model.** { *; }
+-keep class com.filmcam.utils.** { *; }
+-keep class com.filmcam.ui.** { *; }
+-keep class com.filmcam.settings.** { *; }
+
+# Preserve shader strings and EGL bindings
+-keepattributes Signature,InnerClasses,EnclosingMethod
+-keepclassmembers class * {
+    @android.opengl.GLSurfaceView.* <methods>;
+}
+
+# Keep FilmSettings data classes for JSON serialization
+-keep class com.filmcam.model.FilmSettings { *; }
+-keep class com.filmcam.model.FilmEmulation { *; }
+-keep class com.filmcam.model.EmulationParameters { *; }
+-keep class com.filmcam.model.DefaultParameters { *; }
+-keep class com.filmcam.model.ToneCurve { *; }
+-keep class com.filmcam.model.BorderSettings { *; }
+
+# Keep enum classes
+-keepclassmembers enum com.filmcam.model.** {
+    public static **[] values();
+    public static ** valueOf(java.lang.String);
+}
+
+# Keep Kotlinx Serialization for preset JSON import/export
+-keepattributes *Annotation*, InnerClasses
+-dontnote kotlinx.serialization.AnnotationsKt
+
+-keepclassmembers class com.filmcam.model.**$$serializer { *; }
+-keep class com.filmcam.model.**Companion { *; }
+-keepclasseswithmembers class com.filmcam.model.** {
+    kotlinx.serialization.KSerializer serializer(...);
+}
+
+# Keep Film.cam Activity
+-keep class com.filmcam.CameraActivity { *; }
+-keep class com.filmcam.HapticPattern { *; }

@@ -1,0 +1,544 @@
+{
+  "emulations": [
+    {
+      "id": "analog",
+      "path": "cluts/film/analog.png",
+      "category": "film",
+      "defaults": {
+        "grainType": "fine",
+        "halationEnabled": false,
+        "defaultDR": "high",
+        "description": "Classic analog film look with warm tones"
+      },
+      "parameters": {
+        "emulationStrength": 1.0,
+        "saturation": 0.0,
+        "contrast": 0.0,
+        "temperature": 0.0,
+        "tint": 0.0,
+        "fade": 0.0,
+        "mute": 0.0,
+        "grainLevel": 0.3,
+        "grainSize": 1.0,
+        "halation": 0.0,
+        "bloom": 0.0,
+        "aberration": 0.0,
+        "toneCurve": {"high": 0.0, "mid": 0.0, "shadow": 0.0},
+        "dynamicRange": "high"
+      }
+    },
+    {
+      "id": "calypso",
+      "path": "cluts/film/calypso.png",
+      "category": "film",
+      "defaults": {
+        "grainType": "fine",
+        "halationEnabled": false,
+        "defaultDR": "high",
+        "description": "Tropical vibes with enhanced blues and greens"
+      },
+      "parameters": {
+        "emulationStrength": 1.0,
+        "saturation": 0.0,
+        "contrast": 0.0,
+        "temperature": 0.0,
+        "tint": 0.0,
+        "fade": 0.0,
+        "mute": 0.0,
+        "grainLevel": 0.3,
+        "grainSize": 1.0,
+        "halation": 0.0,
+        "bloom": 0.0,
+        "aberration": 0.0,
+        "toneCurve": {"high": 0.0, "mid": 0.0, "shadow": 0.0},
+        "dynamicRange": "high"
+      }
+    },
+    {
+      "id": "chrome",
+      "path": "cluts/film/chrome.png",
+      "category": "film",
+      "defaults": {
+        "grainType": "superfine",
+        "halationEnabled": false,
+        "defaultDR": "medium",
+        "description": "High contrast slide film simulation"
+      },
+      "parameters": {
+        "emulationStrength": 1.0,
+        "saturation": 0.0,
+        "contrast": 0.0,
+        "temperature": 0.0,
+        "tint": 0.0,
+        "fade": 0.0,
+        "mute": 0.0,
+        "grainLevel": 0.2,
+        "grainSize": 1.0,
+        "halation": 0.0,
+        "bloom": 0.0,
+        "aberration": 0.0,
+        "toneCurve": {"high": 0.0, "mid": 0.0, "shadow": 0.0},
+        "dynamicRange": "medium"
+      }
+    },
+    {
+      "id": "cine",
+      "path": "cluts/film/cine.png",
+      "category": "film",
+      "defaults": {
+        "grainType": "medium",
+        "halationEnabled": true,
+        "defaultDR": "high",
+        "description": "Cinematic film stock with rich shadows"
+      },
+      "parameters": {
+        "emulationStrength": 1.0,
+        "saturation": 0.0,
+        "contrast": 0.0,
+        "temperature": 0.0,
+        "tint": 0.0,
+        "fade": 0.0,
+        "mute": 0.0,
+        "grainLevel": 0.35,
+        "grainSize": 1.0,
+        "halation": 0.1,
+        "bloom": 0.0,
+        "aberration": 0.0,
+        "toneCurve": {"high": 0.0, "mid": 0.0, "shadow": 0.0},
+        "dynamicRange": "high"
+      }
+    },
+    {
+      "id": "gold",
+      "path": "cluts/film/gold.png",
+      "category": "film",
+      "defaults": {
+        "grainType": "fine",
+        "halationEnabled": true,
+        "defaultDR": "high",
+        "description": "Warm golden hour aesthetic"
+      },
+      "parameters": {
+        "emulationStrength": 1.0,
+        "saturation": 0.0,
+        "contrast": 0.0,
+        "temperature": 0.1,
+        "tint": 0.0,
+        "fade": 0.0,
+        "mute": 0.0,
+        "grainLevel": 0.3,
+        "grainSize": 1.0,
+        "halation": 0.1,
+        "bloom": 0.05,
+        "aberration": 0.0,
+        "toneCurve": {"high": 0.0, "mid": 0.0, "shadow": 0.0},
+        "dynamicRange": "high"
+      }
+    },
+    {
+      "id": "luminosity",
+      "path": "cluts/film/luminosity.png",
+      "category": "film",
+      "defaults": {
+        "grainType": "fine",
+        "halationEnabled": false,
+        "defaultDR": "high",
+        "description": "Luminance-preserving color grade"
+      },
+      "parameters": {
+        "emulationStrength": 1.0,
+        "saturation": 0.0,
+        "contrast": 0.0,
+        "temperature": 0.0,
+        "tint": 0.0,
+        "fade": 0.0,
+        "mute": 0.0,
+        "grainLevel": 0.3,
+        "grainSize": 1.0,
+        "halation": 0.0,
+        "bloom": 0.0,
+        "aberration": 0.0,
+        "toneCurve": {"high": 0.0, "mid": 0.0, "shadow": 0.0},
+        "dynamicRange": "high"
+      }
+    },
+    {
+      "id": "nord",
+      "path": "cluts/film/nord.png",
+      "category": "film",
+      "defaults": {
+        "grainType": "medium",
+        "halationEnabled": false,
+        "defaultDR": "high",
+        "description": "Cool Nordic tones with desaturated greens"
+      },
+      "parameters": {
+        "emulationStrength": 1.0,
+        "saturation": -0.1,
+        "contrast": 0.0,
+        "temperature": -0.05,
+        "tint": 0.0,
+        "fade": 0.0,
+        "mute": 0.0,
+        "grainLevel": 0.35,
+        "grainSize": 1.0,
+        "halation": 0.0,
+        "bloom": 0.0,
+        "aberration": 0.0,
+        "toneCurve": {"high": 0.0, "mid": 0.0, "shadow": 0.0},
+        "dynamicRange": "high"
+      }
+    },
+    {
+      "id": "portra",
+      "path": "cluts/film/portra.png",
+      "category": "film",
+      "defaults": {
+        "grainType": "fine",
+        "halationEnabled": false,
+        "defaultDR": "high",
+        "description": "Soft, airy tones with natural skin reproduction"
+      },
+      "parameters": {
+        "emulationStrength": 1.0,
+        "saturation": 0.0,
+        "contrast": 0.0,
+        "temperature": 0.0,
+        "tint": 0.0,
+        "fade": 0.0,
+        "mute": 0.0,
+        "grainLevel": 0.3,
+        "grainSize": 1.0,
+        "halation": 0.0,
+        "bloom": 0.0,
+        "aberration": 0.0,
+        "toneCurve": {"high": 0.0, "mid": 0.0, "shadow": 0.0},
+        "dynamicRange": "high"
+      }
+    },
+    {
+      "id": "tungsten",
+      "path": "cluts/film/tungsten.png",
+      "category": "film",
+      "defaults": {
+        "grainType": "fine",
+        "halationEnabled": false,
+        "defaultDR": "high",
+        "description": "Cool tungsten-balanced film look"
+      },
+      "parameters": {
+        "emulationStrength": 1.0,
+        "saturation": 0.0,
+        "contrast": 0.0,
+        "temperature": -0.1,
+        "tint": 0.0,
+        "fade": 0.0,
+        "mute": 0.0,
+        "grainLevel": 0.3,
+        "grainSize": 1.0,
+        "halation": 0.0,
+        "bloom": 0.0,
+        "aberration": 0.0,
+        "toneCurve": {"high": 0.0, "mid": 0.0, "shadow": 0.0},
+        "dynamicRange": "high"
+      }
+    },
+    {
+      "id": "vista",
+      "path": "cluts/film/vista.png",
+      "category": "film",
+      "defaults": {
+        "grainType": "fine",
+        "halationEnabled": false,
+        "defaultDR": "high",
+        "description": "Landscape-optimized with vibrant skies"
+      },
+      "parameters": {
+        "emulationStrength": 1.0,
+        "saturation": 0.05,
+        "contrast": 0.0,
+        "temperature": 0.0,
+        "tint": 0.0,
+        "fade": 0.0,
+        "mute": 0.0,
+        "grainLevel": 0.3,
+        "grainSize": 1.0,
+        "halation": 0.0,
+        "bloom": 0.0,
+        "aberration": 0.0,
+        "toneCurve": {"high": 0.0, "mid": 0.0, "shadow": 0.0},
+        "dynamicRange": "high"
+      }
+    },
+    {
+      "id": "mono",
+      "path": "cluts/monochrome/mono.png",
+      "category": "monochrome",
+      "defaults": {
+        "grainType": "medium",
+        "halationEnabled": false,
+        "defaultDR": "high",
+        "description": "Classic black and white conversion"
+      },
+      "parameters": {
+        "emulationStrength": 1.0,
+        "saturation": -1.0,
+        "contrast": 0.0,
+        "temperature": 0.0,
+        "tint": 0.0,
+        "fade": 0.0,
+        "mute": 0.0,
+        "grainLevel": 0.4,
+        "grainSize": 1.0,
+        "halation": 0.0,
+        "bloom": 0.0,
+        "aberration": 0.0,
+        "toneCurve": {"high": 0.0, "mid": 0.0, "shadow": 0.0},
+        "dynamicRange": "high"
+      }
+    },
+    {
+      "id": "noir",
+      "path": "cluts/monochrome/noir.png",
+      "category": "monochrome",
+      "defaults": {
+        "grainType": "coarse",
+        "halationEnabled": true,
+        "defaultDR": "low",
+        "description": "High contrast noir with crushed blacks"
+      },
+      "parameters": {
+        "emulationStrength": 1.0,
+        "saturation": -1.0,
+        "contrast": 0.15,
+        "temperature": 0.0,
+        "tint": 0.0,
+        "fade": 0.1,
+        "mute": 0.0,
+        "grainLevel": 0.5,
+        "grainSize": 1.1,
+        "halation": 0.15,
+        "bloom": 0.0,
+        "aberration": 0.0,
+        "toneCurve": {"high": 0.0, "mid": 0.0, "shadow": -0.1},
+        "dynamicRange": "low"
+      }
+    },
+    {
+      "id": "apollo",
+      "path": "cluts/artistic/apollo.png",
+      "category": "artistic",
+      "defaults": {
+        "grainType": "medium",
+        "halationEnabled": true,
+        "defaultDR": "medium",
+        "description": "Dreamy vintage aesthetic with soft highlights"
+      },
+      "parameters": {
+        "emulationStrength": 1.0,
+        "saturation": 0.0,
+        "contrast": 0.0,
+        "temperature": 0.05,
+        "tint": 0.05,
+        "fade": 0.1,
+        "mute": 0.0,
+        "grainLevel": 0.4,
+        "grainSize": 1.0,
+        "halation": 0.15,
+        "bloom": 0.1,
+        "aberration": 0.05,
+        "toneCurve": {"high": -0.1, "mid": 0.0, "shadow": 0.0},
+        "dynamicRange": "medium"
+      }
+    },
+    {
+      "id": "arizona",
+      "path": "cluts/artistic/arizona.png",
+      "category": "artistic",
+      "defaults": {
+        "grainType": "medium",
+        "halationEnabled": false,
+        "defaultDR": "medium",
+        "description": "Desert warmth with enhanced oranges"
+      },
+      "parameters": {
+        "emulationStrength": 1.0,
+        "saturation": 0.1,
+        "contrast": 0.0,
+        "temperature": 0.1,
+        "tint": 0.0,
+        "fade": 0.0,
+        "mute": 0.0,
+        "grainLevel": 0.35,
+        "grainSize": 1.0,
+        "halation": 0.0,
+        "bloom": 0.0,
+        "aberration": 0.0,
+        "toneCurve": {"high": 0.0, "mid": 0.0, "shadow": 0.0},
+        "dynamicRange": "medium"
+      }
+    },
+    {
+      "id": "metro",
+      "path": "cluts/artistic/metro.png",
+      "category": "artistic",
+      "defaults": {
+        "grainType": "fine",
+        "halationEnabled": false,
+        "defaultDR": "high",
+        "description": "Urban cool with desaturated tones"
+      },
+      "parameters": {
+        "emulationStrength": 1.0,
+        "saturation": -0.05,
+        "contrast": 0.05,
+        "temperature": -0.05,
+        "tint": 0.0,
+        "fade": 0.0,
+        "mute": 0.05,
+        "grainLevel": 0.3,
+        "grainSize": 1.0,
+        "halation": 0.0,
+        "bloom": 0.0,
+        "aberration": 0.0,
+        "toneCurve": {"high": 0.0, "mid": 0.0, "shadow": 0.0},
+        "dynamicRange": "high"
+      }
+    },
+    {
+      "id": "prologue",
+      "path": "cluts/artistic/prologue.png",
+      "category": "artistic",
+      "defaults": {
+        "grainType": "fine",
+        "halationEnabled": false,
+        "defaultDR": "high",
+        "description": "Nostalgic fade with muted colors"
+      },
+      "parameters": {
+        "emulationStrength": 1.0,
+        "saturation": -0.1,
+        "contrast": -0.05,
+        "temperature": 0.0,
+        "tint": 0.0,
+        "fade": 0.15,
+        "mute": 0.1,
+        "grainLevel": 0.3,
+        "grainSize": 1.0,
+        "halation": 0.0,
+        "bloom": 0.0,
+        "aberration": 0.0,
+        "toneCurve": {"high": 0.0, "mid": 0.0, "shadow": 0.05},
+        "dynamicRange": "high"
+      }
+    },
+    {
+      "id": "stock",
+      "path": "cluts/artistic/stock.png",
+      "category": "artistic",
+      "defaults": {
+        "grainType": "fine",
+        "halationEnabled": false,
+        "defaultDR": "medium",
+        "description": "Neutral stock footage look"
+      },
+      "parameters": {
+        "emulationStrength": 1.0,
+        "saturation": 0.0,
+        "contrast": 0.0,
+        "temperature": 0.0,
+        "tint": 0.0,
+        "fade": 0.0,
+        "mute": 0.0,
+        "grainLevel": 0.25,
+        "grainSize": 1.0,
+        "halation": 0.0,
+        "bloom": 0.0,
+        "aberration": 0.0,
+        "toneCurve": {"high": 0.0, "mid": 0.0, "shadow": 0.0},
+        "dynamicRange": "medium"
+      }
+    },
+    {
+      "id": "taiga",
+      "path": "cluts/artistic/taiga.png",
+      "category": "artistic",
+      "defaults": {
+        "grainType": "medium",
+        "halationEnabled": false,
+        "defaultDR": "high",
+        "description": "Forest greens with cool shadows"
+      },
+      "parameters": {
+        "emulationStrength": 1.0,
+        "saturation": 0.0,
+        "contrast": 0.0,
+        "temperature": -0.05,
+        "tint": 0.05,
+        "fade": 0.0,
+        "mute": 0.0,
+        "grainLevel": 0.35,
+        "grainSize": 1.0,
+        "halation": 0.0,
+        "bloom": 0.0,
+        "aberration": 0.0,
+        "toneCurve": {"high": 0.0, "mid": 0.0, "shadow": 0.0},
+        "dynamicRange": "high"
+      }
+    },
+    {
+      "id": "xenon",
+      "path": "cluts/artistic/xenon.png",
+      "category": "artistic",
+      "defaults": {
+        "grainType": "fine",
+        "halationEnabled": false,
+        "defaultDR": "medium",
+        "description": "Sci-fi cool with enhanced cyans"
+      },
+      "parameters": {
+        "emulationStrength": 1.0,
+        "saturation": 0.0,
+        "contrast": 0.05,
+        "temperature": -0.1,
+        "tint": -0.05,
+        "fade": 0.0,
+        "mute": 0.0,
+        "grainLevel": 0.3,
+        "grainSize": 1.0,
+        "halation": 0.0,
+        "bloom": 0.0,
+        "aberration": 0.0,
+        "toneCurve": {"high": 0.0, "mid": 0.0, "shadow": 0.0},
+        "dynamicRange": "medium"
+      }
+    },
+    {
+      "id": "xpro",
+      "path": "cluts/artistic/xpro.png",
+      "category": "artistic",
+      "defaults": {
+        "grainType": "medium",
+        "halationEnabled": false,
+        "defaultDR": "low",
+        "description": "Cross-processed punch with shifted colors"
+      },
+      "parameters": {
+        "emulationStrength": 1.0,
+        "saturation": 0.15,
+        "contrast": 0.1,
+        "temperature": 0.0,
+        "tint": 0.0,
+        "fade": 0.0,
+        "mute": 0.0,
+        "grainLevel": 0.4,
+        "grainSize": 1.0,
+        "halation": 0.0,
+        "bloom": 0.0,
+        "aberration": 0.05,
+        "toneCurve": {"high": 0.0, "mid": 0.0, "shadow": -0.05},
+        "dynamicRange": "low"
+      }
+    }
+  ]
+}
