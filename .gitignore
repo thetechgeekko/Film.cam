@@ -1,0 +1,135 @@
+```
+# Android build outputs
+*.apk
+*.ap_
+build/
+.gradle/
+captures/
+
+# Android cache
+.cache/
+
+# Local configuration file (sdk path, etc)
+local.properties
+
+# Log Files
+*.log
+
+# Android Studio Navigation editor temp files
+.navigation/
+
+# Android Studio captures
+*.cap
+
+# IntelliJ
+*.iml
+*.idea
+*.iws
+*.tmp
+
+# Keystore
+key/*.jks
+
+# Version control properties
+.version/
+
+# Build system
+.settings/
+bin/
+gen/
+out/
+obj/
+
+# Gradle
+.gradle/
+gradle-app.setting
+gradle/
+
+# Log files
+*.log
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Generated files
+generated/
+
+# Coverage reports
+coverage/
+*.gcov
+*.lcov
+.info
+
+# Debug
+debug/
+debug.keystore
+
+# Proguard
+proguard/
+
+# APK Analyzer
+.apk.analyzer/
+
+# Firebase Performance
+*.fir
+
+# Google Services
+google-services.json
+
+# Crashlytics
+crashlytics-build.properties
+
+# LeakCanary
+leakcanary/
+
+# Detekt
+detekt/
+
+# Detekt baseline
+detekt-baseline.xml
+
+# Gradle versions
+gradle/wrapper/
+
+# Fastlane
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots
+fastlane/test_output
+fastlane/build/
+
+# IDEs
+.vscode/
+.idea/
+
+# Compressed files
+*.zip
+*.gz
+*.tar
+*.tgz
+*.bz2
+*.xz
+*.7z
+*.rar
+*.zst
+*.lz4
+*.lzh
+*.cab
+*.arj
+*.rpm
+*.deb
+*.Z
+*.lz
+*.lzo
+*.tar.gz
+*.tar.bz2
+*.tar.xz
+*.tar.zst
+
+```
