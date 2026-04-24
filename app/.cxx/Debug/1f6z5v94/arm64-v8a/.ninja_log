@@ -1,0 +1,20 @@
+# ninja log v5
+0	179	7987086255367515	CMakeFiles/allocator.dir/allocator.cpp.o	6bd8261b53a888ca
+9	239	7987086255933855	CMakeFiles/flacRecorder.dir/flacRecorder.cpp.o	e19e2b4eaf6fc461
+180	305	7987086256534533	C:/Users/thete/OneDrive/Documents/GitHub/Film.cam/app/build/intermediates/cxx/Debug/1f6z5v94/obj/arm64-v8a/liballocator.so	e6e9dc67e5af7237
+239	360	7987086257080056	C:/Users/thete/OneDrive/Documents/GitHub/Film.cam/app/build/intermediates/cxx/Debug/1f6z5v94/obj/arm64-v8a/libflacRecorder.so	ccbed0aa8df2ec8b
+14	1005	7987086263501539	CMakeFiles/camera2native.dir/native-engine.cpp.o	205757dc48eafbcd
+1008	1111	7987086264607722	C:/Users/thete/OneDrive/Documents/GitHub/Film.cam/app/build/intermediates/cxx/Debug/1f6z5v94/obj/arm64-v8a/libcamera2native.so	3245a067dd350507
+5	1438	7987086267772930	CMakeFiles/dngCreator.dir/dngCreator.cpp.o	a443fc17347827b
+1438	1513	7987086268656492	C:/Users/thete/OneDrive/Documents/GitHub/Film.cam/app/build/intermediates/cxx/Debug/1f6z5v94/obj/arm64-v8a/libdngCreator.so	a00a3f9e0ef0fda2
+9	1660	7987088199424043	CMakeFiles/dngCreator.dir/dngCreator.cpp.o	a443fc17347827b
+1661	1781	7987088200781432	C:/Users/thete/OneDrive/Documents/GitHub/Film.cam/app/build/intermediates/cxx/Debug/1f6z5v94/obj/arm64-v8a/libdngCreator.so	a00a3f9e0ef0fda2
+0	9	0	clean	aa3edce947434c0
+4	71	7987088721144897	CMakeFiles/allocator.dir/allocator.cpp.o	6bd8261b53a888ca
+13	107	7987088721495979	CMakeFiles/flacRecorder.dir/flacRecorder.cpp.o	e19e2b4eaf6fc461
+72	151	7987088721897916	C:/Users/thete/OneDrive/Documents/GitHub/Film.cam/app/build/intermediates/cxx/Debug/1f6z5v94/obj/arm64-v8a/liballocator.so	e6e9dc67e5af7237
+108	182	7987088722192197	C:/Users/thete/OneDrive/Documents/GitHub/Film.cam/app/build/intermediates/cxx/Debug/1f6z5v94/obj/arm64-v8a/libflacRecorder.so	ccbed0aa8df2ec8b
+16	657	7987088726935612	CMakeFiles/camera2native.dir/native-engine.cpp.o	205757dc48eafbcd
+657	737	7987088727737929	C:/Users/thete/OneDrive/Documents/GitHub/Film.cam/app/build/intermediates/cxx/Debug/1f6z5v94/obj/arm64-v8a/libcamera2native.so	3245a067dd350507
+9	1028	7987088730562876	CMakeFiles/dngCreator.dir/dngCreator.cpp.o	a443fc17347827b
+1028	1103	7987088731395176	C:/Users/thete/OneDrive/Documents/GitHub/Film.cam/app/build/intermediates/cxx/Debug/1f6z5v94/obj/arm64-v8a/libdngCreator.so	a00a3f9e0ef0fda2

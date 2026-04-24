@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
+apply plugin: 'org.jetbrains.kotlin.plugin.compose'
 //apply plugin: "io.github.wurensen.android-aspectjx"
 Properties versionProps = new Properties()
 android {
@@ -90,6 +91,9 @@ android {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
+    kotlinOptions {
+        jvmTarget = "17"
+    }
     lint {
         abortOnError false
     }
@@ -144,7 +148,7 @@ dependencies {
     implementation 'androidx.compose.material3:material3'
     implementation 'androidx.compose.animation:animation'
     implementation 'androidx.activity:activity-compose:1.10.1'
-    implementation 'androidx.lifecycle:lifecycle-runtime-compose:2.9.7'
+    implementation 'androidx.lifecycle:lifecycle-runtime-compose:2.8.7'
     
     // Kotlinx Serialization for Film.cam preset JSON
     implementation 'org.jetbrains.kotlinx:kotlinx-serialization-json:1.8.1'

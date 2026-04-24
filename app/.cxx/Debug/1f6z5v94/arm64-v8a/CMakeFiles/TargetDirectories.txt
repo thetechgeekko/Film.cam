@@ -1,0 +1,6 @@
+C:/Users/thete/OneDrive/Documents/GitHub/Film.cam/app/.cxx/Debug/1f6z5v94/arm64-v8a/CMakeFiles/dngCreator.dir
+C:/Users/thete/OneDrive/Documents/GitHub/Film.cam/app/.cxx/Debug/1f6z5v94/arm64-v8a/CMakeFiles/allocator.dir
+C:/Users/thete/OneDrive/Documents/GitHub/Film.cam/app/.cxx/Debug/1f6z5v94/arm64-v8a/CMakeFiles/flacRecorder.dir
+C:/Users/thete/OneDrive/Documents/GitHub/Film.cam/app/.cxx/Debug/1f6z5v94/arm64-v8a/CMakeFiles/camera2native.dir
+C:/Users/thete/OneDrive/Documents/GitHub/Film.cam/app/.cxx/Debug/1f6z5v94/arm64-v8a/CMakeFiles/edit_cache.dir
+C:/Users/thete/OneDrive/Documents/GitHub/Film.cam/app/.cxx/Debug/1f6z5v94/arm64-v8a/CMakeFiles/rebuild_cache.dir

@@ -17,12 +17,14 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.runtime.*
 import androidx.core.content.ContextCompat
 import androidx.core.content.getSystemService
-import com.filmcam.capture.CaptureController
-import com.filmcam.model.FilmSettings
-import com.filmcam.pipeline.FilmProcessor
-import com.filmcam.settings.SettingsManager
-import com.filmcam.ui.MinimalCameraScreen
-import com.filmcam.utils.ClutLoader
+import androidx.lifecycle.lifecycleScope
+import com.thetechgeekko.filmcam.gpu.GlTextureLoader
+import com.thetechgeekko.filmcam.capture.CaptureController
+import com.thetechgeekko.filmcam.model.FilmSettings
+import com.thetechgeekko.filmcam.pipeline.FilmProcessor
+import com.thetechgeekko.filmcam.settings.SettingsManager
+import com.thetechgeekko.filmcam.ui.MinimalCameraScreen
+import com.thetechgeekko.filmcam.utils.ClutLoader
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -39,6 +41,7 @@ class CameraActivity : ComponentActivity() {
     private lateinit var clutLoader: ClutLoader
     private lateinit var settingsManager: SettingsManager
     private lateinit var vibrator: Vibrator
+    private lateinit var textureLoader: GlTextureLoader
     
     private var currentSettings by mutableStateOf(FilmSettings())
     private var isDRSEnabled by mutableStateOf(false)
@@ -78,7 +81,8 @@ class CameraActivity : ComponentActivity() {
         
         settingsManager = SettingsManager(this)
         clutLoader = ClutLoader(this)
-        filmProcessor = FilmProcessor(this)
+        textureLoader = GlTextureLoader()
+        filmProcessor = FilmProcessor(this, textureLoader)
         captureController = CaptureController(this, cameraManager)
         
         // Load saved settings
@@ -100,56 +104,22 @@ class CameraActivity : ComponentActivity() {
         
         setContent {
             MinimalCameraScreen(
-                settings = currentSettings,
-                isDRSEnabled = isDRSEnabled,
-                isProcessing = isProcessing,
-                showDevelopingAnimation = showDevelopingAnimation,
+                filmSettings = currentSettings,
                 onSettingsChange = { newSettings ->
                     currentSettings = newSettings
                     settingsManager.saveCurrentSettings(newSettings)
                     captureController.startPreview(newSettings)
                 },
-                onDRSToggle = { enabled ->
-                    isDRSEnabled = enabled
-                    settingsManager.setDRSEnabled(enabled)
-                    provideHapticFeedback(HapticPattern.HDRX_TOGGLE)
+                onDRSToggle = {
+                    val newEnabled = !isDRSEnabled
+                    isDRSEnabled = newEnabled
+                    settingsManager.setDRSEnabled(newEnabled)
+                    provideHapticFeedback(HapticPattern.HDRX_ON)
                 },
-                onCapture = { settings, drs ->
-                    performCapture(settings, drs)
+                onCapture = {
+                    performCapture(currentSettings, isDRSEnabled)
                 },
-                onGridToggle = { show ->
-                    currentSettings = currentSettings.copy(showGrid = show)
-                    settingsManager.setShowGrid(show)
-                },
-                onLevelToggle = { show ->
-                    currentSettings = currentSettings.copy(showLevel = show)
-                    settingsManager.setShowLevel(show)
-                },
-                onAspectRatioChange = { ratio ->
-                    currentSettings = currentSettings.copy(aspectRatio = ratio)
-                    settingsManager.saveCurrentSettings(currentSettings)
-                    captureController.startPreview(currentSettings)
-                },
-                onPresetSave = { name, settings ->
-                    settingsManager.saveCustomPreset(name, settings)
-                },
-                onPresetLoad = { name ->
-                    settingsManager.loadCustomPresets()[name]?.let { loadedSettings ->
-                        currentSettings = loadedSettings
-                        settingsManager.saveCurrentSettings(loadedSettings)
-                        captureController.startPreview(loadedSettings)
-                    }
-                },
-                onPresetImport = { json, name ->
-                    if (settingsManager.importPreset(json, name)) {
-                        provideHapticFeedback(HapticPattern.SUCCESS)
-                    } else {
-                        provideHapticFeedback(HapticPattern.ERROR)
-                    }
-                },
-                onHapticFeedback = { pattern ->
-                    provideHapticFeedback(pattern)
-                }
+                availableEmulations = clutLoader.loadEmulations()
             )
         }
     }
@@ -261,16 +231,15 @@ class CameraActivity : ComponentActivity() {
         withContext(Dispatchers.Default) {
             try {
                 // Load CLUT for selected emulation
-                val clutBitmap = clutLoader.loadClut(settings.emulation)
+                val clutBitmap = clutLoader.loadClut(settings.emulation.path)
                 
                 // Load grain texture
                 val grainBitmap = clutLoader.loadGrainTexture(
-                    when (settings.emulation.defaultParams.grainType) {
-                        "superfine" -> com.filmcam.model.GrainType.SUPERFINE
-                        "fine" -> com.filmcam.model.GrainType.FINE
-                        "medium" -> com.filmcam.model.GrainType.MEDIUM
-                        "coarse" -> com.filmcam.model.GrainType.COARSE
-                        else -> com.filmcam.model.GrainType.FINE
+                    when (settings.emulation.defaults.grainType) {
+                        com.thetechgeekko.filmcam.model.GrainType.SUPERFINE -> com.thetechgeekko.filmcam.model.GrainType.SUPERFINE
+                        com.thetechgeekko.filmcam.model.GrainType.FINE -> com.thetechgeekko.filmcam.model.GrainType.FINE
+                        com.thetechgeekko.filmcam.model.GrainType.MEDIUM -> com.thetechgeekko.filmcam.model.GrainType.MEDIUM
+                        com.thetechgeekko.filmcam.model.GrainType.COARSE -> com.thetechgeekko.filmcam.model.GrainType.COARSE
                     }
                 )
                 
@@ -336,7 +305,7 @@ class CameraActivity : ComponentActivity() {
     override fun onDestroy() {
         super.onDestroy()
         filmProcessor.release()
-        clutLoader.release()
+        clutLoader.clearCache()
     }
 }
 

@@ -1,0 +1,18 @@
+# ninja log v5
+6	92	7987086517605308	CMakeFiles/allocator.dir/allocator.cpp.o	794f9bb408def183
+11	134	7987086518012827	CMakeFiles/flacRecorder.dir/flacRecorder.cpp.o	cd10fbdc664c54b
+94	178	7987086518418480	C:/Users/thete/OneDrive/Documents/GitHub/Film.cam/app/build/intermediates/cxx/Debug/1f6z5v94/obj/armeabi-v7a/liballocator.so	d28371296acf5312
+134	214	7987086518770053	C:/Users/thete/OneDrive/Documents/GitHub/Film.cam/app/build/intermediates/cxx/Debug/1f6z5v94/obj/armeabi-v7a/libflacRecorder.so	30f985089b07a85c
+15	723	7987086523841470	CMakeFiles/camera2native.dir/native-engine.cpp.o	3c03accf3c828cd6
+726	816	7987086524783949	C:/Users/thete/OneDrive/Documents/GitHub/Film.cam/app/build/intermediates/cxx/Debug/1f6z5v94/obj/armeabi-v7a/libcamera2native.so	fe86d0ed1258664d
+1	1104	7987086527561523	CMakeFiles/dngCreator.dir/dngCreator.cpp.o	a4f433b4b8b73c6a
+1105	1184	7987086528447779	C:/Users/thete/OneDrive/Documents/GitHub/Film.cam/app/build/intermediates/cxx/Debug/1f6z5v94/obj/armeabi-v7a/libdngCreator.so	3a782c4fb6a4c2d4
+0	26	0	clean	aa3edce947434c0
+8	79	7987088732931317	CMakeFiles/allocator.dir/allocator.cpp.o	794f9bb408def183
+13	112	7987088733269973	CMakeFiles/flacRecorder.dir/flacRecorder.cpp.o	cd10fbdc664c54b
+79	155	7987088733653319	C:/Users/thete/OneDrive/Documents/GitHub/Film.cam/app/build/intermediates/cxx/Debug/1f6z5v94/obj/armeabi-v7a/liballocator.so	d28371296acf5312
+113	188	7987088733954133	C:/Users/thete/OneDrive/Documents/GitHub/Film.cam/app/build/intermediates/cxx/Debug/1f6z5v94/obj/armeabi-v7a/libflacRecorder.so	30f985089b07a85c
+17	830	7987088740387221	CMakeFiles/camera2native.dir/native-engine.cpp.o	3c03accf3c828cd6
+831	910	7987088741184723	C:/Users/thete/OneDrive/Documents/GitHub/Film.cam/app/build/intermediates/cxx/Debug/1f6z5v94/obj/armeabi-v7a/libcamera2native.so	fe86d0ed1258664d
+3	1199	7987088743990756	CMakeFiles/dngCreator.dir/dngCreator.cpp.o	a4f433b4b8b73c6a
+1200	1280	7987088744888233	C:/Users/thete/OneDrive/Documents/GitHub/Film.cam/app/build/intermediates/cxx/Debug/1f6z5v94/obj/armeabi-v7a/libdngCreator.so	3a782c4fb6a4c2d4

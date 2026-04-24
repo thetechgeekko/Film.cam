@@ -1,0 +1,22 @@
+[
+{
+  "directory": "C:/Users/thete/OneDrive/Documents/GitHub/Film.cam/app/.cxx/Debug/1f6z5v94/armeabi-v7a",
+  "command": "C:\\Users\\thete\\AppData\\Local\\Android\\Sdk\\ndk\\27.0.12077973\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang++.exe --target=armv7-none-linux-androideabi26 --sysroot=C:/Users/thete/AppData/Local/Android/Sdk/ndk/27.0.12077973/toolchains/llvm/prebuilt/windows-x86_64/sysroot -DVERSION_BUILD=\\\"24368\\\" -DVERSION_NAME=\\\"0.93\\\" -DdngCreator_EXPORTS -IC:/Users/thete/OneDrive/Documents/GitHub/Film.cam/app/src/main/cpp/deps -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -march=armv7-a -mthumb -Wformat -Werror=format-security   -fno-limit-debug-info  -fPIC -std=c++11 -o CMakeFiles\\dngCreator.dir\\dngCreator.cpp.o -c C:\\Users\\thete\\OneDrive\\Documents\\GitHub\\Film.cam\\app\\src\\main\\cpp\\dngCreator.cpp",
+  "file": "C:\\Users\\thete\\OneDrive\\Documents\\GitHub\\Film.cam\\app\\src\\main\\cpp\\dngCreator.cpp"
+},
+{
+  "directory": "C:/Users/thete/OneDrive/Documents/GitHub/Film.cam/app/.cxx/Debug/1f6z5v94/armeabi-v7a",
+  "command": "C:\\Users\\thete\\AppData\\Local\\Android\\Sdk\\ndk\\27.0.12077973\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang++.exe --target=armv7-none-linux-androideabi26 --sysroot=C:/Users/thete/AppData/Local/Android/Sdk/ndk/27.0.12077973/toolchains/llvm/prebuilt/windows-x86_64/sysroot -Dallocator_EXPORTS -IC:/Users/thete/OneDrive/Documents/GitHub/Film.cam/app/src/main/cpp/deps -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -march=armv7-a -mthumb -Wformat -Werror=format-security   -fno-limit-debug-info  -fPIC -std=c++11 -o CMakeFiles\\allocator.dir\\allocator.cpp.o -c C:\\Users\\thete\\OneDrive\\Documents\\GitHub\\Film.cam\\app\\src\\main\\cpp\\allocator.cpp",
+  "file": "C:\\Users\\thete\\OneDrive\\Documents\\GitHub\\Film.cam\\app\\src\\main\\cpp\\allocator.cpp"
+},
+{
+  "directory": "C:/Users/thete/OneDrive/Documents/GitHub/Film.cam/app/.cxx/Debug/1f6z5v94/armeabi-v7a",
+  "command": "C:\\Users\\thete\\AppData\\Local\\Android\\Sdk\\ndk\\27.0.12077973\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang++.exe --target=armv7-none-linux-androideabi26 --sysroot=C:/Users/thete/AppData/Local/Android/Sdk/ndk/27.0.12077973/toolchains/llvm/prebuilt/windows-x86_64/sysroot -DflacRecorder_EXPORTS -IC:/Users/thete/OneDrive/Documents/GitHub/Film.cam/app/src/main/cpp/deps -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -march=armv7-a -mthumb -Wformat -Werror=format-security   -fno-limit-debug-info  -fPIC -std=c++11 -o CMakeFiles\\flacRecorder.dir\\flacRecorder.cpp.o -c C:\\Users\\thete\\OneDrive\\Documents\\GitHub\\Film.cam\\app\\src\\main\\cpp\\flacRecorder.cpp",
+  "file": "C:\\Users\\thete\\OneDrive\\Documents\\GitHub\\Film.cam\\app\\src\\main\\cpp\\flacRecorder.cpp"
+},
+{
+  "directory": "C:/Users/thete/OneDrive/Documents/GitHub/Film.cam/app/.cxx/Debug/1f6z5v94/armeabi-v7a",
+  "command": "C:\\Users\\thete\\AppData\\Local\\Android\\Sdk\\ndk\\27.0.12077973\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang++.exe --target=armv7-none-linux-androideabi26 --sysroot=C:/Users/thete/AppData/Local/Android/Sdk/ndk/27.0.12077973/toolchains/llvm/prebuilt/windows-x86_64/sysroot -Dcamera2native_EXPORTS -IC:/Users/thete/OneDrive/Documents/GitHub/Film.cam/app/src/main/cpp/deps -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -march=armv7-a -mthumb -Wformat -Werror=format-security   -fno-limit-debug-info  -fPIC -std=c++11 -o CMakeFiles\\camera2native.dir\\native-engine.cpp.o -c C:\\Users\\thete\\OneDrive\\Documents\\GitHub\\Film.cam\\app\\src\\main\\cpp\\native-engine.cpp",
+  "file": "C:\\Users\\thete\\OneDrive\\Documents\\GitHub\\Film.cam\\app\\src\\main\\cpp\\native-engine.cpp"
+}
+]

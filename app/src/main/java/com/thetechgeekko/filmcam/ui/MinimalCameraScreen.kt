@@ -31,7 +31,7 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
-import com.filmcam.model.*
+import com.thetechgeekko.filmcam.model.*
 
 /**
  * Minimalist camera screen implementing mood.camera gesture controls
@@ -429,7 +429,8 @@ private fun CaptureButton(
             .pointerInput(Unit) {
                 detectHorizontalDragGestures(
                     onDragEnd = { onClick() },
-                    onDragCancel = {}
+                    onDragCancel = {},
+                    onHorizontalDrag = { _, _ -> }
                 )
             }
     ) {
@@ -462,7 +463,8 @@ private fun HiddenMenuTrigger(
             .pointerInput(Unit) {
                 detectHorizontalDragGestures(
                     onDragEnd = { /* Ignore */ },
-                    onDragCancel = { /* Ignore */ }
+                    onDragCancel = { /* Ignore */ },
+                    onHorizontalDrag = { _, _ -> }
                 )
             }
     ) {
@@ -475,15 +477,24 @@ private fun HiddenMenuTrigger(
             ) {
                 Column(modifier = Modifier.padding(16.dp)) {
                     Text("Grid Overlay", modifier = Modifier.pointerInput(Unit) {
-                        detectHorizontalDragGestures(onDragEnd = { onShowGrid() })
+                        detectHorizontalDragGestures(
+                            onDragEnd = { onShowGrid() },
+                            onHorizontalDrag = { _, _ -> }
+                        )
                     })
                     Spacer(modifier = Modifier.height(8.dp))
                     Text("Level Indicator", modifier = Modifier.pointerInput(Unit) {
-                        detectHorizontalDragGestures(onDragEnd = { onShowLevel() })
+                        detectHorizontalDragGestures(
+                            onDragEnd = { onShowLevel() },
+                            onHorizontalDrag = { _, _ -> }
+                        )
                     })
                     Spacer(modifier = Modifier.height(8.dp))
                     Text("Advanced Editor", modifier = Modifier.pointerInput(Unit) {
-                        detectHorizontalDragGestures(onDragEnd = { onOpenPresetEditor() })
+                        detectHorizontalDragGestures(
+                            onDragEnd = { onOpenPresetEditor() },
+                            onHorizontalDrag = { _, _ -> }
+                        )
                     })
                     Spacer(modifier = Modifier.height(8.dp))
                     Text("Save RAW: ${if (currentSettings.saveRaw) "ON" else "OFF"}")
@@ -706,9 +717,9 @@ private fun EdgeGestureHandler(
                 .height(edgeThreshold)
                 .fillMaxWidth()
                 .pointerInput(Unit) {
-                    detectVerticalDragGestures { _, dragAmount ->
-                        onTopSwipe(dragAmount)
-                    }
+                    detectVerticalDragGestures(
+                        onVerticalDrag = { _, dragAmount -> onTopSwipe(dragAmount) }
+                    )
                 }
         )
         
@@ -719,9 +730,9 @@ private fun EdgeGestureHandler(
                 .width(edgeThreshold)
                 .fillMaxHeight()
                 .pointerInput(Unit) {
-                    detectVerticalDragGestures { _, dragAmount ->
-                        onRightSwipe(dragAmount)
-                    }
+                    detectVerticalDragGestures(
+                        onVerticalDrag = { _, dragAmount -> onRightSwipe(dragAmount) }
+                    )
                 }
         )
         
@@ -732,9 +743,9 @@ private fun EdgeGestureHandler(
                 .width(edgeThreshold)
                 .fillMaxHeight()
                 .pointerInput(Unit) {
-                    detectVerticalDragGestures { _, dragAmount ->
-                        onLeftSwipe(dragAmount)
-                    }
+                    detectVerticalDragGestures(
+                        onVerticalDrag = { _, dragAmount -> onLeftSwipe(dragAmount) }
+                    )
                 }
         )
         
@@ -745,9 +756,9 @@ private fun EdgeGestureHandler(
                 .height(edgeThreshold)
                 .fillMaxWidth()
                 .pointerInput(Unit) {
-                    detectHorizontalDragGestures { _, dragAmount ->
-                        onBottomSwipe(dragAmount)
-                    }
+                    detectHorizontalDragGestures(
+                        onHorizontalDrag = { _, dragAmount -> onBottomSwipe(dragAmount) }
+                    )
                 }
         )
     }

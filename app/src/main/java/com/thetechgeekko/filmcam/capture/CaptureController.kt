@@ -14,8 +14,8 @@ import android.util.Range
 import android.util.Size
 import androidx.annotation.OptIn
 import androidx.camera.core.ExperimentalZeroShutterLag
-import com.filmcam.model.FilmSettings
-import com.filmcam.model.AspectRatio
+import com.thetechgeekko.filmcam.model.FilmSettings
+import com.thetechgeekko.filmcam.model.AspectRatio
 import java.io.File
 import java.nio.ByteBuffer
 
@@ -73,7 +73,7 @@ class CaptureController(
             
             isColorBlind = cameraCharacteristics?.get(
                 CameraCharacteristics.SENSOR_INFO_COLOR_FILTER_ARRANGEMENT
-            ) == SensorInfo.COLOR_FILTER_ARRANGEMENT_MONO
+            ) == CameraMetadata.SENSOR_INFO_COLOR_FILTER_ARRANGEMENT_MONO
             
             val sensitivityRange = cameraCharacteristics?.get(
                 CameraCharacteristics.SENSOR_INFO_SENSITIVITY_RANGE
@@ -111,6 +111,7 @@ class CaptureController(
     /**
      * Create capture session with ImageReaders for JPEG and optional DNG
      */
+    @OptIn(ExperimentalZeroShutterLag::class)
     fun createCaptureSession(
         jpegWidth: Int,
         jpegHeight: Int,
@@ -148,7 +149,6 @@ class CaptureController(
             dngImageReader?.surface?.let { surfaces.add(it) }
         }
         
-        @OptIn(markerClass = ExperimentalZeroShutterLag::class)
         camera.createCaptureSession(surfaces, object : CameraCaptureSession.StateCallback() {
             override fun onConfigured(session: CameraCaptureSession) {
                 captureSession = session
@@ -292,9 +292,9 @@ class CaptureController(
         // Calculate exposure time based on simulated ISO
         // Higher ISO = shorter exposure time (brighter image)
         val isoFactor = targetIso.toFloat() / 200f // Base ISO 200
-        val targetExposure = (minExposure * isoFactor).coerceIn(minExposure, maxExposure)
+        val targetExposure = (minExposure * isoFactor).toLong().coerceIn(minExposure, maxExposure)
         
-        builder.set(CaptureRequest.SENSOR_EXPOSURE_TIME, targetExposure.toLong())
+        builder.set(CaptureRequest.SENSOR_EXPOSURE_TIME, targetExposure)
     }
     
     /**

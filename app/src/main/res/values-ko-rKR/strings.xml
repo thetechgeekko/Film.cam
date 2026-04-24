@@ -174,7 +174,7 @@
     <string name="perm_rationale_storage_message">사진과 비디오를 저장하기 위해 저장공간 권한이 필요합니다.</string>
     <string name="perm_rationale_media_title">사진 및 비디오 라이브러리 권한</string>
     <string name="perm_rationale_media_message">갤러리에 미디어를 표시하려면 사진 및 비디오 접근 권한이 필요합니다.\n\n전체 접근 권한을 허용해 주세요. 일부 선택 모드는 지원되지 않습니다.</string>
-    <string name="perm_rationale_media_settings">갤러리 기능을 위해 전체 접근 권한이 필요합니다. 앱 설정에서 권한을 '전체 허용'으로 변경해 주세요.</string>
+    <string name="perm_rationale_media_settings">갤러리 기능을 위해 전체 접근 권한이 필요합니다. 앱 설정에서 권한을 \'전체 허용\'으로 변경해 주세요.</string>
     <string name="perm_rationale_audio_title">마이크 권한</string>
     <string name="perm_rationale_audio_message">오디오가 포함된 비디오 녹화를 위해 마이크 권한이 필요합니다.</string>
     <string name="perm_rationale_dcim_title">DCIM 폴더 접근 권한</string>

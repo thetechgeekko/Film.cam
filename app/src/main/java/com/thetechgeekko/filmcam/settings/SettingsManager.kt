@@ -3,13 +3,13 @@ package com.thetechgeekko.filmcam.settings
 import android.content.Context
 import android.content.SharedPreferences
 import androidx.core.content.edit
-import com.filmcam.model.FilmSettings
-import com.filmcam.model.FilmEmulation
-import com.filmcam.model.DynamicRange
-import com.filmcam.model.AspectRatio
-import com.filmcam.model.ToneCurve
-import com.filmcam.model.BorderSettings
-import com.filmcam.model.BorderStyle
+import com.thetechgeekko.filmcam.model.FilmSettings
+import com.thetechgeekko.filmcam.model.FilmEmulation
+import com.thetechgeekko.filmcam.model.DynamicRange
+import com.thetechgeekko.filmcam.model.AspectRatio
+import com.thetechgeekko.filmcam.model.ToneCurve
+import com.thetechgeekko.filmcam.model.BorderSettings
+import com.thetechgeekko.filmcam.model.BorderStyle
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 

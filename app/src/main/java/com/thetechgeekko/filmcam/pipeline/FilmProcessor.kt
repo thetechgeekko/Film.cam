@@ -8,9 +8,9 @@ import android.opengl.GLES20
 import android.opengl.GLES30
 import android.opengl.GLUtils
 import android.util.Log
-import com.filmcam.gpu.GlTextureLoader
-import com.filmcam.model.FilmSettings
-import com.filmcam.model.FilmEmulation
+import com.thetechgeekko.filmcam.gpu.GlTextureLoader
+import com.thetechgeekko.filmcam.model.FilmSettings
+import com.thetechgeekko.filmcam.model.FilmEmulation
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.io.ByteArrayOutputStream

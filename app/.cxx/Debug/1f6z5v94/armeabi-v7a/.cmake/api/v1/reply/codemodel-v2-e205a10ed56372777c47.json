@@ -1,0 +1,87 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"jsonFile" : "directory-.-Debug-d0094a50bb2071803777.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.6.0"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "dngCreator",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "allocator::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-allocator-Debug-114d6d808b4c3f3dca9f.json",
+					"name" : "allocator",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "camera2native::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-camera2native-Debug-e68e1b4fdbc8e8cfe1c6.json",
+					"name" : "camera2native",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "dngCreator::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-dngCreator-Debug-ea5803d9db708360a944.json",
+					"name" : "dngCreator",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "flacRecorder::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-flacRecorder-Debug-e900f96d6ec301fc056e.json",
+					"name" : "flacRecorder",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "C:/Users/thete/OneDrive/Documents/GitHub/Film.cam/app/.cxx/Debug/1f6z5v94/armeabi-v7a",
+		"source" : "C:/Users/thete/OneDrive/Documents/GitHub/Film.cam/app/src/main/cpp"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 3
+	}
+}

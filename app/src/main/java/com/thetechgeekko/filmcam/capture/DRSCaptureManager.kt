@@ -8,6 +8,7 @@ import android.hardware.camera2.CameraCharacteristics
 import android.hardware.camera2.CameraDevice
 import android.hardware.camera2.CameraManager
 import android.hardware.camera2.CaptureRequest
+import android.hardware.camera2.CaptureFailure
 import android.hardware.camera2.TotalCaptureResult
 import android.hardware.camera2.params.StreamConfigurationMap
 import android.media.ImageReader
@@ -266,7 +267,7 @@ class DRSCaptureManager(
                 override fun onCaptureFailed(
                     session: CameraCaptureSession,
                     request: CaptureRequest,
-                    failure: CaptureRequest.CaptureFailure
+                    failure: CaptureFailure
                 ) {
                     Log.e(TAG, "Capture failed: ${failure.reason}")
                     cleanup()

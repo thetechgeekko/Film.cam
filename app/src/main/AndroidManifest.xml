@@ -64,7 +64,7 @@
         </activity>
 
         <activity
-                android:name="com.thetechgeekko.filmcam.ui.gallery.GalleryActivity"
+                android:name="com.particlesdevs.photoncamera.gallery.ui.GalleryActivity"
                 android:label="@string/gallery_name"
                 android:taskAffinity=""
                 android:theme="@style/Theme.FilmCam.BaseApp"
@@ -114,8 +114,8 @@
 
         <!-- Activity alias for launcher icon - can be enabled/disabled programmatically -->
         <activity-alias
-                android:name="com.thetechgeekko.filmcam.ui.gallery.GalleryActivityLauncher"
-                android:targetActivity="com.thetechgeekko.filmcam.ui.gallery.GalleryActivity"
+                android:name="com.particlesdevs.photoncamera.gallery.ui.GalleryActivityLauncher"
+                android:targetActivity="com.particlesdevs.photoncamera.gallery.ui.GalleryActivity"
                 android:label="@string/gallery_name"
                 android:icon="@mipmap/ic_gallery_launcher"
                 android:enabled="true"
@@ -133,7 +133,7 @@
         
         <!-- Film.cam Activity - Zerocam-aligned minimal camera UI -->
         <activity
-            android:name="com.filmcam.CameraActivity"
+            android:name="com.thetechgeekko.filmcam.CameraActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:theme="@style/Theme.FilmCam.BaseApp"
             android:exported="true">

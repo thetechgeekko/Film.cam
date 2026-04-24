@@ -3,7 +3,7 @@ package com.thetechgeekko.filmcam.utils
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import com.filmcam.model.*
+import com.thetechgeekko.filmcam.model.*
 import org.json.JSONObject
 import java.io.File
 
@@ -88,9 +88,9 @@ class ClutLoader(private val context: Context) {
                 
                 val toneCurveJson = paramsJson.getJSONObject("toneCurve")
                 val toneCurve = ToneCurve(
-                    highlights = toneCurveJson.getDouble("highlights").toFloat(),
-                    midtones = toneCurveJson.getDouble("midtones").toFloat(),
-                    shadows = toneCurveJson.getDouble("shadows").toFloat()
+                    highlights = toneCurveJson.getDouble("high").toFloat(),
+                    midtones = toneCurveJson.getDouble("mid").toFloat(),
+                    shadows = toneCurveJson.getDouble("shadow").toFloat()
                 )
                 
                 val parameters = EmulationParameters(

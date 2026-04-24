@@ -2,7 +2,7 @@ package com.thetechgeekko.filmcam.utils
 
 import android.content.Context
 import androidx.exifinterface.media.ExifInterface
-import com.filmcam.model.FilmSettings
+import com.thetechgeekko.filmcam.model.FilmSettings
 import java.io.File
 
 /**

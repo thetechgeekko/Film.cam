@@ -31,10 +31,8 @@ class GlTextureLoader {
     
     // LRU cache for CLUT textures (max 3 in VRAM per spec)
     private val clutCache = object : LruCache<String, Int>(3) {
-        override fun entryRemoved(evicted: Boolean, key: String?, oldValue: Int?) {
-            oldValue?.let { textureId ->
-                deleteTexture(textureId)
-            }
+        override fun entryRemoved(evicted: Boolean, key: String, oldValue: Int, newValue: Int?) {
+            deleteTexture(oldValue)
         }
     }
     
@@ -75,7 +73,7 @@ class GlTextureLoader {
         val config = configs.firstOrNull() ?: throw RuntimeException("No suitable EGL config found")
         
         eglContext = egl10.eglCreateContext(eglDisplay, config, EGL10.EGL_NO_CONTEXT, 
-            intArrayOf(EGL10.EGL_CONTEXT_CLIENT_VERSION, 3, EGL10.EGL_NONE))
+            intArrayOf(0x3098, 3, EGL10.EGL_NONE)) // 0x3098 is EGL_CONTEXT_CLIENT_VERSION
         
         // Create dummy pbuffer surface for off-screen rendering
         val surfaceAttribs = intArrayOf(EGL10.EGL_NONE)
