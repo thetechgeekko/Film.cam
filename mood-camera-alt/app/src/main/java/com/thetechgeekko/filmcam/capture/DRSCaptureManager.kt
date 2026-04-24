@@ -1,4 +1,4 @@
-package com.filmcam.capture
+package com.thetechgeekko.filmcam.capture
 
 import android.content.Context
 import android.graphics.ImageFormat
@@ -23,19 +23,19 @@ import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 
 /**
- * HDRx capture manager implementing mood.camera-style exposure fusion
+ * DRS (Dynamic Range System) capture manager implementing mood.camera-style exposure fusion
  * Captures 3-frame burst (-1.5EV, 0EV, +1.5EV) with AE lock
  * Auto-disables on motion (>15°/s) or thermal throttling
  */
-class HdrxCaptureManager(
+class DRSCaptureManager(
     private val context: Context,
     private val cameraManager: CameraManager
 ) {
     
     companion object {
-        private const val TAG = "HdrxCaptureManager"
+        private const val TAG = "DRSCaptureManager"
         
-        // EV offsets for HDRx burst
+        // EV offsets for DRS burst
         private const val EV_UNDEREXPOSED = -1.5f
         private const val EV_NORMAL = 0f
         private const val EV_OVEREXPOSED = +1.5f
@@ -57,9 +57,9 @@ class HdrxCaptureManager(
     private var isMotionDetected = false
     
     /**
-     * Check if HDRx should be disabled due to motion or thermal
+     * Check if DRS should be disabled due to motion or thermal
      */
-    fun shouldDisableHdrx(): Boolean {
+    fun shouldDisableDrs(): Boolean {
         return isMotionDetected || isThermalThrottled()
     }
     
@@ -121,14 +121,14 @@ class HdrxCaptureManager(
     }
     
     /**
-     * Execute HDRx burst capture with AE lock
+     * Execute DRS burst capture with AE lock
      * @param cameraId Camera device ID
      * @param jpegSize Output resolution
      * @param onImageCaptured Callback for each captured frame
      * @return Array of 3 ImageReaders containing under/normal/over exposed frames
      */
     @RequiresPermission(anyOf = ["android.permission.CAMERA"])
-    suspend fun captureHdrxBurst(
+    suspend fun captureDrsBurst(
         cameraId: String,
         jpegSize: Size,
         onImageCaptured: (Int, ByteBuffer) -> Unit
@@ -152,13 +152,13 @@ class HdrxCaptureManager(
                 }
             }, handler)
         } catch (e: Exception) {
-            Log.e(TAG, "HDRx capture failed", e)
+            Log.e(TAG, "DRS capture failed", e)
             continuation.resumeWithException(e)
         }
     }
     
     /**
-     * Create capture session and execute HDRx burst
+     * Create capture session and execute DRS burst
      */
     private fun createCaptureSession(
         camera: CameraDevice,
@@ -177,7 +177,7 @@ class HdrxCaptureManager(
         camera.createCaptureSession(surfaces, object : CameraCaptureSession.StateCallback() {
             override fun onConfigured(session: CameraCaptureSession) {
                 captureSession = session
-                executeHdrxBurst(camera, session, imageReaders, continuation)
+                executeDrsBurst(camera, session, imageReaders, continuation)
             }
             
             override fun onConfigureFailed(session: CameraCaptureSession) {
@@ -188,9 +188,9 @@ class HdrxCaptureManager(
     }
     
     /**
-     * Execute the actual HDRx burst with AE lock
+     * Execute the actual DRS burst with AE lock
      */
-    private fun executeHdrxBurst(
+    private fun executeDrsBurst(
         camera: CameraDevice,
         session: CameraCaptureSession,
         imageReaders: Array<ImageReader>,
@@ -245,7 +245,7 @@ class HdrxCaptureManager(
             }, handler)
             
         } catch (e: CameraAccessException) {
-            Log.e(TAG, "Failed to execute HDRx burst", e)
+            Log.e(TAG, "Failed to execute DRS burst", e)
             cleanup()
             continuation.resumeWithException(e)
         }

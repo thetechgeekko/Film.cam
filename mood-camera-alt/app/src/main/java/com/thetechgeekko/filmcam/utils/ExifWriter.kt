@@ -1,4 +1,4 @@
-package com.filmcam.utils
+package com.thetechgeekko.filmcam.utils
 
 import android.content.Context
 import androidx.exifinterface.media.ExifInterface
@@ -41,7 +41,7 @@ class ExifWriter(private val context: Context) {
                 append("Film.cam | ${settings.emulation.id}")
                 append(" | ISO${settings.isoSim}")
                 append(" | EV${settings.exposureComp}")
-                if (settings.hdrEnabled) append(" | HDRx")
+                if (settings.hdrEnabled) append(" | DRS")
             }
             exif.setAttribute(TAG_IMAGE_DESCRIPTION, description)
             

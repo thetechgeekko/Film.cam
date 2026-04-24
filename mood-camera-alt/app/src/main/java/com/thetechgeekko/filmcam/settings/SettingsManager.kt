@@ -1,4 +1,4 @@
-package com.filmcam.settings
+package com.thetechgeekko.filmcam.settings
 
 import android.content.Context
 import android.content.SharedPreferences
@@ -23,7 +23,7 @@ class SettingsManager(private val context: Context) {
         private const val KEY_CURRENT_SETTINGS = "current_settings"
         private const val KEY_CUSTOM_PRESETS = "custom_presets"
         private const val KEY_LAST_EMULATION = "last_emulation"
-        private const val KEY_HDRX_ENABLED = "hdrx_enabled"
+        private const val KEY_HDRX_ENABLED = "drs_enabled"
         private const val KEY_SHOW_GRID = "show_grid"
         private const val KEY_SHOW_LEVEL = "show_level"
         
@@ -106,16 +106,16 @@ class SettingsManager(private val context: Context) {
     }
     
     /**
-     * Check if HDRx is enabled by default
+     * Check if DRS is enabled by default
      */
-    fun isHdrxEnabled(): Boolean {
+    fun isDRSEnabled(): Boolean {
         return prefs.getBoolean(KEY_HDRX_ENABLED, false)
     }
     
     /**
-     * Set HDRx enabled state
+     * Set DRS enabled state
      */
-    fun setHdrxEnabled(enabled: Boolean) {
+    fun setDRSEnabled(enabled: Boolean) {
         prefs.edit {
             putBoolean(KEY_HDRX_ENABLED, enabled)
         }

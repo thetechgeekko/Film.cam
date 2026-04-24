@@ -2,10 +2,11 @@
     <string name="version_summary" translatable="false">v%1$s\n%2$s</string>
     <string name="iso" translatable="false">"ISO "</string>
     <string name="icon_string" translatable="false">Icon</string>
-    <string name="backup_file_name" translatable="false">PCAM_BKP_%1$s</string>
-    <string name="app_name" translatable="false">PhotonCamera</string>
-    <string name="gallery_name" translatable="false">PGallery</string>
-    <string name="device_support" translatable="false">PhotonCamera Pro</string>
+    <string name="backup_file_name" translatable="false">FILMCAM_BKP_%1$s</string>
+    <string name="app_name" translatable="false">film.cam</string>
+    <string name="app_credits" translatable="false">By Akshay Sharma\nInstagram: @akshay.sharma</string>
+    <string name="gallery_name" translatable="false">FilmCam Gallery</string>
+    <string name="device_support" translatable="false">film.cam by Akshay Sharma</string>
     <string name="request_permission">This app needs camera permission.</string>
     <string name="camera_error">This device doesn\'t support Camera2 API.</string>
     <string name="luma_nr_count">Luminance Noise Reduction Strength</string>
@@ -172,7 +173,7 @@
     <string name="ok">OK</string>
     <string name="perm_open_settings">Open Settings</string>
     <string name="perm_rationale_camera_title">Camera &amp; Microphone Access</string>
-    <string name="perm_rationale_camera_message">PhotonCamera needs access to the camera and microphone to capture photos and record video.</string>
+    <string name="perm_rationale_camera_message">film.cam needs access to the camera and microphone to capture photos and record video.</string>
     <string name="perm_rationale_storage_title">Storage Access</string>
     <string name="perm_rationale_storage_message">Storage access is required to save your photos and videos.</string>
     <string name="perm_rationale_media_title">Photo &amp; Video Library Access</string>

@@ -1,4 +1,4 @@
-package com.filmcam.pipeline
+package com.thetechgeekko.filmcam.pipeline
 
 import android.content.Context
 import android.graphics.Bitmap
