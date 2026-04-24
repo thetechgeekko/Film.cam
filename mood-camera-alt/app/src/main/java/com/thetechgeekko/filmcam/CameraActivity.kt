@@ -1,4 +1,4 @@
-package com.filmcam
+package com.thetechgeekko.filmcam
 
 import android.Manifest
 import android.content.Context
@@ -41,7 +41,7 @@ class CameraActivity : ComponentActivity() {
     private lateinit var vibrator: Vibrator
     
     private var currentSettings by mutableStateOf(FilmSettings())
-    private var isHdrxEnabled by mutableStateOf(false)
+    private var isDRSEnabled by mutableStateOf(false)
     private var isProcessing by mutableStateOf(false)
     private var showDevelopingAnimation by mutableStateOf(false)
     
@@ -83,7 +83,7 @@ class CameraActivity : ComponentActivity() {
         
         // Load saved settings
         currentSettings = settingsManager.loadCurrentSettings()
-        isHdrxEnabled = settingsManager.isHdrxEnabled()
+        isDRSEnabled = settingsManager.isDRSEnabled()
         
         // Check and request camera permission
         when {
@@ -101,7 +101,7 @@ class CameraActivity : ComponentActivity() {
         setContent {
             MinimalCameraScreen(
                 settings = currentSettings,
-                isHdrxEnabled = isHdrxEnabled,
+                isDRSEnabled = isDRSEnabled,
                 isProcessing = isProcessing,
                 showDevelopingAnimation = showDevelopingAnimation,
                 onSettingsChange = { newSettings ->
@@ -109,13 +109,13 @@ class CameraActivity : ComponentActivity() {
                     settingsManager.saveCurrentSettings(newSettings)
                     captureController.startPreview(newSettings)
                 },
-                onHdrxToggle = { enabled ->
-                    isHdrxEnabled = enabled
-                    settingsManager.setHdrxEnabled(enabled)
+                onDRSToggle = { enabled ->
+                    isDRSEnabled = enabled
+                    settingsManager.setDRSEnabled(enabled)
                     provideHapticFeedback(HapticPattern.HDRX_TOGGLE)
                 },
-                onCapture = { settings, hdrx ->
-                    performCapture(settings, hdrx)
+                onCapture = { settings, drs ->
+                    performCapture(settings, drs)
                 },
                 onGridToggle = { show ->
                     currentSettings = currentSettings.copy(showGrid = show)
@@ -207,9 +207,9 @@ class CameraActivity : ComponentActivity() {
     }
     
     /**
-     * Perform capture with optional HDRx
+     * Perform capture with optional DRS
      */
-    private fun performCapture(settings: FilmSettings, hdrx: Boolean) {
+    private fun performCapture(settings: FilmSettings, drs: Boolean) {
         if (isProcessing) return
         
         isProcessing = true
@@ -220,7 +220,7 @@ class CameraActivity : ComponentActivity() {
         lifecycleScope.launch {
             try {
                 // Trigger capture
-                captureController.capture(settings, hdrx)
+                captureController.capture(settings, drs)
                 
                 // Wait for image availability (simplified - actual implementation uses callbacks)
                 withContext(Dispatchers.Default) {
@@ -229,7 +229,7 @@ class CameraActivity : ComponentActivity() {
                     
                     // Process through film pipeline
                     // In actual implementation, this receives the captured file from callback
-                    processCapturedImage(settings, hdrx)
+                    processCapturedImage(settings, drs)
                 }
                 
                 // Show developing animation
@@ -257,7 +257,7 @@ class CameraActivity : ComponentActivity() {
     /**
      * Process captured image through film pipeline
      */
-    private suspend fun processCapturedImage(settings: FilmSettings, hdrx: Boolean) {
+    private suspend fun processCapturedImage(settings: FilmSettings, drs: Boolean) {
         withContext(Dispatchers.Default) {
             try {
                 // Load CLUT for selected emulation

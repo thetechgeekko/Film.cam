@@ -29,7 +29,7 @@
     <uses-feature android:name="android.hardware.camera.capability.raw" />
 
     <application
-        android:name="com.particlesdevs.photoncamera.app.PhotonCamera"
+        android:name="com.thetechgeekko.filmcam.app.FilmCamApplication"
         android:launchMode="singleTask"
         android:taskAffinity=""
         android:hardwareAccelerated="true"
@@ -37,14 +37,14 @@
         android:label="@string/app_name"
         android:largeHeap="true"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Photon.BaseApp"
+        android:theme="@style/Theme.FilmCam.BaseApp"
         tools:targetApi="q">
         <activity
-            android:name="com.particlesdevs.photoncamera.ui.settings.SettingsActivity"
-            android:theme="@style/Theme.Photon.SettingsActivity" />
+            android:name="com.thetechgeekko.filmcam.ui.settings.SettingsActivity"
+            android:theme="@style/Theme.FilmCam.SettingsActivity" />
         <activity
-            android:name="com.particlesdevs.photoncamera.ui.SplashActivity"
-            android:theme="@style/Theme.Photon.Splash"
+            android:name="com.thetechgeekko.filmcam.ui.SplashActivity"
+            android:theme="@style/Theme.FilmCam.Splash"
                 android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -64,10 +64,10 @@
         </activity>
 
         <activity
-                android:name="com.particlesdevs.photoncamera.gallery.ui.GalleryActivity"
+                android:name="com.thetechgeekko.filmcam.ui.gallery.GalleryActivity"
                 android:label="@string/gallery_name"
                 android:taskAffinity=""
-                android:theme="@style/Theme.Photon.BaseApp"
+                android:theme="@style/Theme.FilmCam.BaseApp"
                 android:icon="@mipmap/ic_gallery_launcher"
                 android:exported="true">
             <!-- REVIEW intent - Camera apps use this to review captured images -->
@@ -114,8 +114,8 @@
 
         <!-- Activity alias for launcher icon - can be enabled/disabled programmatically -->
         <activity-alias
-                android:name="com.particlesdevs.photoncamera.gallery.ui.GalleryActivityLauncher"
-                android:targetActivity="com.particlesdevs.photoncamera.gallery.ui.GalleryActivity"
+                android:name="com.thetechgeekko.filmcam.ui.gallery.GalleryActivityLauncher"
+                android:targetActivity="com.thetechgeekko.filmcam.ui.gallery.GalleryActivity"
                 android:label="@string/gallery_name"
                 android:icon="@mipmap/ic_gallery_launcher"
                 android:enabled="true"
@@ -135,7 +135,7 @@
         <activity
             android:name="com.filmcam.CameraActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
-            android:theme="@style/Theme.Photon.BaseApp"
+            android:theme="@style/Theme.FilmCam.BaseApp"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.media.action.IMAGE_CAPTURE" />

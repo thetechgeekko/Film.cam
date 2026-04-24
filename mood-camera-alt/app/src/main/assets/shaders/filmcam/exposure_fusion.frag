@@ -1,7 +1,7 @@
 #version 300 es
 precision highp float;
 
-// HDRx Exposure Fusion Shader
+// DRS Exposure Fusion Shader
 // Blends multiple exposures using luminance-weighted blending
 // No tone mapping applied - preserves full dynamic range
 

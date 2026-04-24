@@ -1,4 +1,4 @@
-package com.filmcam.capture
+package com.thetechgeekko.filmcam.capture
 
 import android.content.Context
 import android.graphics.ImageFormat
@@ -21,7 +21,7 @@ import java.nio.ByteBuffer
 
 /**
  * Camera2 capture controller for Film.cam
- * Handles RAW/JPEG capture, AE locking, exposure bracketing for HDRx
+ * Handles RAW/JPEG capture, AE locking, exposure bracketing for DRS
  * Zerocam-aligned: no manual shutter/ISO/focus controls exposed to user
  */
 class CaptureController(
@@ -33,8 +33,8 @@ class CaptureController(
         private const val MAX_RESOLUTION_MP = 24 // 24MP ceiling
         private const val LOW_LIGHT_BINNING_MP = 12 // Auto-bin to 12MP in low light
         
-        // Exposure bracketing for HDRx
-        val HDRX_EV_OFFSETS = floatArrayOf(-1.5f, 0f, 1.5f)
+        // Exposure bracketing for DRS
+        val DRS_EV_OFFSETS = floatArrayOf(-1.5f, 0f, 1.5f)
     }
     
     private var cameraDevice: CameraDevice? = null
@@ -187,13 +187,13 @@ class CaptureController(
     }
     
     /**
-     * Capture single frame or HDRx burst
+     * Capture single frame or DRS burst
      */
-    fun capture(settings: FilmSettings, hdrxEnabled: Boolean = false) {
+    fun capture(settings: FilmSettings, drsEnabled: Boolean = false) {
         currentSettings = settings
         
-        if (hdrxEnabled) {
-            captureHdrxBurst(settings)
+        if (drsEnabled) {
+            captureDRSBurst(settings)
         } else {
             captureSingleFrame(settings)
         }
@@ -224,9 +224,9 @@ class CaptureController(
     }
     
     /**
-     * HDRx burst capture: 3 frames at -1.5EV, 0EV, +1.5EV with AE lock
+     * DRS burst capture: 3 frames at -1.5EV, 0EV, +1.5EV with AE lock
      */
-    private fun captureHdrxBurst(settings: FilmSettings) {
+    private fun captureDRSBurst(settings: FilmSettings) {
         val session = captureSession ?: return
         val camera = cameraDevice ?: return
         
@@ -245,7 +245,7 @@ class CaptureController(
         // Create 3 capture requests with different EV offsets
         val captureRequests = mutableListOf<CaptureRequest>()
         
-        HDRX_EV_OFFSETS.forEach { evOffset ->
+        DRS_EV_OFFSETS.forEach { evOffset ->
             val frameBuilder = camera.createCaptureRequest(CameraDevice.TEMPLATE_STILL_CAPTURE)
             frameBuilder.addTarget(imageReader?.surface ?: return)
             
@@ -410,7 +410,7 @@ class CaptureController(
     }
     
     /**
-     * Burst capture callback for HDRx
+     * Burst capture callback for DRS
      */
     private val burstCallback = object : CameraCaptureSession.CaptureCallback() {
         private var frameCount = 0
@@ -422,8 +422,8 @@ class CaptureController(
         ) {
             frameCount++
             if (frameCount >= 3) {
-                Log.d(TAG, "HDRx burst completed: 3 frames")
-                onCaptureListener?.invoke(CaptureResult(null, true)) // HDRx flag
+                Log.d(TAG, "DRS burst completed: 3 frames")
+                onCaptureListener?.invoke(CaptureResult(null, true)) // DRS flag
             }
         }
         
@@ -432,8 +432,8 @@ class CaptureController(
             request: CaptureRequest,
             failure: CaptureFailure
         ) {
-            Log.e(TAG, "HDRx burst failed: ${failure.reason}")
-            onCaptureFailed?.invoke("HDRx failed: ${failure.reason}")
+            Log.e(TAG, "DRS burst failed: ${failure.reason}")
+            onCaptureFailed?.invoke("DRS failed: ${failure.reason}")
         }
     }
     
@@ -470,5 +470,5 @@ class CaptureController(
         fun onConfigureFailed(message: String)
     }
     
-    data class CaptureResult(val jpegFile: File?, val isHdrxBurst: Boolean)
+    data class CaptureResult(val jpegFile: File?, val isDRSBurst: Boolean)
 }

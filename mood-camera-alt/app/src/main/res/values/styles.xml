@@ -2,7 +2,7 @@
     <!--Activity Themes-->
 
     <!-- Base application theme. -->
-    <style name="Theme.Photon.BaseApp" parent="@style/Theme.Material3.DayNight.NoActionBar">
+    <style name="Theme.FilmCam.BaseApp" parent="@style/Theme.Material3.DayNight.NoActionBar">
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowActionBar">false</item>
         <item name="android:windowFullscreen">true</item>
@@ -17,15 +17,15 @@
         <item name="android:fontFamily">@font/open_sans</item>
     </style>
 
-    <style name="Theme.Photon.Splash" parent="Theme.Photon.BaseApp">
+    <style name="Theme.FilmCam.Splash" parent="Theme.FilmCam.BaseApp">
         <item name="android:windowBackground">@drawable/splash_background</item>
     </style>
 
-    <style name="Theme.Photon.SettingsActivity" parent="Theme.Photon.BaseApp">
+    <style name="Theme.FilmCam.SettingsActivity" parent="Theme.FilmCam.BaseApp">
 
     </style>
 
-    <!--    <style name="Theme.Photon.CameraActivity" parent="Theme.AppCompat.NoActionBar">-->
+    <!--    <style name="Theme.FilmCam.CameraActivity" parent="Theme.AppCompat.NoActionBar">-->
     <!--        <item name="android:windowNoTitle">true</item>-->
     <!--        <item name="android:windowActionBar">false</item>-->
     <!--        <item name="android:windowFullscreen">true</item>-->

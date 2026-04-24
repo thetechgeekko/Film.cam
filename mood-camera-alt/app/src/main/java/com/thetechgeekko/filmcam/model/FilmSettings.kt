@@ -1,4 +1,4 @@
-package com.filmcam.model
+package com.thetechgeekko.filmcam.model
 
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.EncodeDefault

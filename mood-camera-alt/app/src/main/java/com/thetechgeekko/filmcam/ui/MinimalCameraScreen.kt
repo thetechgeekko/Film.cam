@@ -1,4 +1,4 @@
-package com.filmcam.ui
+package com.thetechgeekko.filmcam.ui
 
 import android.content.Context
 import android.os.Build
@@ -42,7 +42,7 @@ fun MinimalCameraScreen(
     filmSettings: FilmSettings,
     onSettingsChange: (FilmSettings) -> Unit,
     onCapture: () -> Unit,
-    onHdrxToggle: () -> Unit,
+    onDRSToggle: () -> Unit,
     availableEmulations: List<FilmEmulation>,
     modifier: Modifier = Modifier
 ) {
@@ -152,8 +152,8 @@ fun MinimalCameraScreen(
         CaptureButton(
             onClick = { triggerCapture() },
             onLongPress = {
-                onHdrxToggle()
-                // Triple haptic = HDRx ON, single long = OFF
+                onDRSToggle()
+                // Triple haptic = DRS ON, single long = OFF
                 if (!filmSettings.hdrEnabled) {
                     repeat(3) {
                         vibrator.vibrate(VibrationEffect.createOneShot(50, VibrationEffect.DEFAULT_AMPLITUDE))
@@ -412,7 +412,7 @@ private fun EmulationThumbnail(
 }
 
 /**
- * Center capture button with long-press HDRx toggle
+ * Center capture button with long-press DRS toggle
  */
 @Composable
 private fun CaptureButton(

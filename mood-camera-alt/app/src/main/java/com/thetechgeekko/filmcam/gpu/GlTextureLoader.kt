@@ -1,4 +1,4 @@
-package com.filmcam.gpu
+package com.thetechgeekko.filmcam.gpu
 
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
